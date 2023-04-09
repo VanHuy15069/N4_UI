@@ -1,0 +1,35 @@
+.wrapper {
+    background-color: #353535;
+}
+.wrapper-information {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+.information {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+}
+.contact {
+    flex: 1;
+    color: #fff;
+    line-height: 1.6;
+    padding: 0 15px;
+}
+.desc {
+    display: flex;
+}
+.icon {
+    padding-right: 16px;
+}
+.text {
+    font-size: 1.4rem;
+}
+.copy-right {
+    text-align: center;
+    max-width: 1230px;
+    padding: 20px 15px;
+    margin: 0 auto;
+    color: #fff;
+}

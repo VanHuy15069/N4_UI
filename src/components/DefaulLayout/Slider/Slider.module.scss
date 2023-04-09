@@ -1,0 +1,11 @@
+.wrapper {
+    height: 640px;
+}
+.slider-img {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 640px;
+    object-position: center;
+    object-fit: cover;
+}

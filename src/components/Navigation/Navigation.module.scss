@@ -1,0 +1,28 @@
+.wrapper {
+    height: 55px;
+    background-color: #353535;
+    z-index: 100;
+    &.active {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        animation: dropDown linear 0.4s;
+    }
+}
+@keyframes dropDown {
+    from {
+        transform: translateY(-55px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+.menu {
+    max-width: 1230px;
+    height: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}

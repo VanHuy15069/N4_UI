@@ -1,0 +1,25 @@
+.title {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    padding: 0 28px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    &.block {
+        display: block;
+        padding: 0;
+        line-height: 1.6;
+        font-size: 1.4rem;
+        font-weight: 400;
+    }
+}
+.menu-item {
+    display: block;
+    &:hover .title {
+        color: var(--primary);
+    }
+    &.active .title {
+        color: var(--primary);
+    }
+}

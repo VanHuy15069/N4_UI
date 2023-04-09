@@ -1,0 +1,34 @@
+.swiper-button-next,
+.swiper-button-prev {
+    display: none;
+}
+.wrapper-slider:hover .swiper-button-next {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    animation: renderNext ease-in-out 0.3s;
+}
+.wrapper-slider:hover .swiper-button-prev {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    animation: renderPrev ease-in-out 0.3s;
+}
+@keyframes renderNext {
+    from {
+        opacity: 0;
+        transform: translateX(-15%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes renderPrev {
+    from {
+        opacity: 0;
+        transform: translateX(15%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
