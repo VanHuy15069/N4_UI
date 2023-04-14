@@ -1,5 +1,5 @@
-import Header from '../DefaulLayout/Header';
-import Footer from '../DefaulLayout/Footer';
+import Header from '../DefaultLayout/Header';
+import Footer from '../DefaultLayout/Footer';
 import classNames from 'classnames/bind';
 import styles from './NoSlider.module.scss';
 const cx = classNames.bind(styles);

@@ -1,11 +1,10 @@
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import Navigation from '~/components/Navigation/Navigation';
-import { Fragment } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBagShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useContext } from 'react';
 import { Context } from '~/Provider/Provider';
 const cx = classNames.bind(styles);
 const imageLogo = require('./LOGO.png');
@@ -13,6 +12,16 @@ function Header() {
     const [, , , setShow] = useContext(Context);
     const handleLogin = () => {
         setShow(true);
+    };
+
+    let [input, setInput] = useState({
+        name: '',
+    });
+    let handleChange = (event) => {
+        setInput({
+            name: event.target.value,
+        });
+        console.log(event.target.value);
     };
     return (
         <Fragment>
@@ -23,7 +32,12 @@ function Header() {
                     </Link>
                     <div className={cx('search')}>
                         <div className={cx('wrapper-input')}>
-                            <input className={cx('input')} type="text" />
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                value={input.name}
+                                onChange={(event) => handleChange(event)}
+                            />
                             <button className={cx('btn-search')}>
                                 <span className={cx('icon-search')}>
                                     <FontAwesomeIcon icon={faMagnifyingGlass} />

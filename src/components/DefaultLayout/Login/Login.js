@@ -6,6 +6,7 @@ const cx = classNames.bind(styles);
 function Login() {
     const [, , , setShow] = useContext(Context);
     const [login, setLogin] = useState(true);
+    let [input, check] = useState('ngu', 'asc');
     const handleRegister = () => {
         setLogin(false);
     };
@@ -15,6 +16,7 @@ function Login() {
     const handleLogin = () => {
         setLogin(true);
     };
+
     return (
         <div className={cx('wrapper')} onClick={handleShow}>
             <div className={cx('form')} onClick={(e) => e.stopPropagation()}>
@@ -37,7 +39,12 @@ function Login() {
                 <form>
                     <div className={cx('box')}>
                         <p className={cx('text')}>Tên đăng nhập</p>
-                        <input className={cx('input')} type="text" placeholder="Tên đăng nhập" />
+                        <input
+                            className={cx('input')}
+                            type="text"
+                            placeholder="Tên đăng nhập"
+                            
+                        />
                     </div>
                     {!login && (
                         <div className={cx('box')}>

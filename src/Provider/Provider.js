@@ -1,4 +1,4 @@
-import Login from '~/components/DefaulLayout/Login/Login';
+import Login from '~/components/DefaultLayout/Login/Login';
 import { useState, createContext } from 'react';
 export const Context = createContext();
 function Provider({ children }) {
