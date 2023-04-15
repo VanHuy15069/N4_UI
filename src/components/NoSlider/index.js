@@ -1,5 +1,6 @@
 import Header from '../DefaultLayout/Header';
 import Footer from '../DefaultLayout/Footer';
+import Contact from '../DefaultLayout/Contact';
 import classNames from 'classnames/bind';
 import styles from './NoSlider.module.scss';
 const cx = classNames.bind(styles);
@@ -8,6 +9,7 @@ function NoSlider({ children }) {
         <div>
             <Header />
             <div className={cx('wrapper')}>{children}</div>
+            <Contact />
             <Footer />
         </div>
     );

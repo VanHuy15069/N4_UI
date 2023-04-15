@@ -3,6 +3,7 @@ import Slider from './Slider';
 import Footer from './Footer';
 import classNames from 'classnames/bind';
 import styles from './DefaultLayout.module.scss';
+import Contact from './Contact';
 const cx = classNames.bind(styles);
 function DefaultLayout({ children }) {
     return (
@@ -10,6 +11,7 @@ function DefaultLayout({ children }) {
             <Header />
             <Slider />
             <div className={cx('container')}>{children}</div>
+            <Contact />
             <Footer />
         </div>
     );
