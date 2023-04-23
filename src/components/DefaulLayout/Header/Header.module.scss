@@ -82,3 +82,23 @@
     font-size: 2rem;
     cursor: pointer;
 }
+.user {
+    display: flex;
+    align-items: center;
+    margin-right: 28px;
+}
+.img {
+    background-color: #fff;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.username {
+    font-size: 1.5rem;
+    margin-left: 12px;
+    margin-right: 4px;
+}
+.icon-menu {
+    cursor: pointer;
+}

@@ -2,10 +2,29 @@ import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 import { useState, useContext } from 'react';
 import { Context } from '~/Provider/Provider';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
+export let user;
 function Login() {
-    const [, , , setShow] = useContext(Context);
+    const navigate = useNavigate();
+    const [, setSate, , setUser, , setShow] = useContext(Context);
     const [login, setLogin] = useState(true);
+    const [rePassword, setRePassword] = useState('');
+    const [check, setCheck] = useState('');
+    const [data, setData] = useState({
+        firstName: '',
+        lastName: '',
+        username: '',
+        email: '',
+        phoneNumber: '',
+        password: '',
+        address: '',
+    });
+    const { firstName, lastName, username, email, phoneNumber, password, address } = data;
+    user = data.username;
     const handleRegister = () => {
         setLogin(false);
     };
@@ -14,6 +33,71 @@ function Login() {
     };
     const handleLogin = () => {
         setLogin(true);
+    };
+    //Lấy value ô input
+    const handleChange = (e) => {
+        const spaceValue = e.target.value;
+        if (!spaceValue.startsWith(' ')) {
+            setData({ ...data, [e.target.name]: e.target.value });
+        }
+    };
+    //SỦ LÝ ĐĂNG KÝ
+    const handleSubmitRegister = (e) => {
+        if (
+            !data.firstName ||
+            !data.lastName ||
+            !data.username ||
+            !data.email ||
+            !data.phoneNumber ||
+            !data.address ||
+            !data.password
+        ) {
+            e.preventDefault();
+            setCheck('Bạn nhập thiếu thông tin, vui lòng nhập thêm thông tin!');
+        } else if (data.password.length < 8) {
+            e.preventDefault();
+            setCheck('Mật khẩu cần có ít nhất 8 kí tự!');
+        } else if (data.password !== rePassword) {
+            e.preventDefault();
+            setCheck('mật khẩu xác nhận bạn nhập không khớp!');
+        } else {
+            axios
+                .post('http://localhost:5000/api/v1/auth/register', data)
+                .then((res) => {
+                    console.log(res);
+                    if (res.data.err === 0) {
+                        setLogin(true);
+                    }
+                })
+                .catch(() => {
+                    alert('Có lỗi khi gửi dữ liệu tới máy chủ!');
+                });
+        }
+        navigate('/');
+    };
+    //SỬ LÝ LOGIN
+    const handleSubmitLogin = (e) => {
+        e.preventDefault();
+        if (!data.username || !data.password) {
+            setCheck('Nhập đầy đủ thông tin để đăng nhập!');
+        } else {
+            axios
+                .post('http://localhost:5000/api/v1/auth/login', { username: data.username, password: data.password })
+                .then((res) => {
+                    if (res.data.err === 0) {
+                        setShow(false);
+                        setSate(true);
+                        setUser(data.username);
+                        // localStorage.setItem('token', res.data.token);
+                    } else if (res.data.err === 2) {
+                        setCheck(res.data.msg);
+                    }
+                })
+                .catch(() => {
+                    alert('Có lỗi khi gửi dữ liệu tới máy chủ!');
+                });
+        }
+        navigate('/');
     };
     return (
         <div className={cx('wrapper')} onClick={handleShow}>
@@ -33,48 +117,156 @@ function Login() {
                         </p>
                     </div>
                 )}
-
-                <form>
-                    <div className={cx('box')}>
-                        <p className={cx('text')}>Tên đăng nhập</p>
-                        <input className={cx('input')} type="text" placeholder="Tên đăng nhập" />
-                    </div>
-                    {!login && (
+                {login ? (
+                    //FORM LOGIN
+                    <form onSubmit={handleSubmitLogin}>
+                        <div className={cx('box')}>
+                            <p className={cx('text')}>Tên đăng nhập</p>
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                placeholder="Tên đăng nhập"
+                                name="username"
+                                onChange={handleChange}
+                                value={username}
+                            />
+                        </div>
+                        <div className={cx('box')}>
+                            <p className={cx('text')}>Mật khẩu</p>
+                            <input
+                                className={cx('input')}
+                                type="password"
+                                placeholder="Mật khẩu"
+                                name="password"
+                                onChange={handleChange}
+                                value={password}
+                            />
+                        </div>
+                        <div className={cx('wrap-btn')}>
+                            {check && (
+                                <div className={cx('error')}>
+                                    <span className={cx('icon-err')}>
+                                        <FontAwesomeIcon icon={faExclamationCircle} />
+                                    </span>
+                                    <p className={cx('err-desc')}>{check}</p>
+                                </div>
+                            )}
+                            <div className={cx('btn', 'back')} onClick={handleShow}>
+                                TRỞ LẠI
+                            </div>
+                            <button type="submit" className={cx('btn')}>
+                                ĐĂNG NHẬP
+                            </button>
+                        </div>
+                    </form>
+                ) : (
+                    //FORM REGISTER
+                    <form onSubmit={handleSubmitRegister}>
+                        <div className={cx('box', 'line')}>
+                            <p className={cx('text')}>First Name</p>
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                placeholder="First Name"
+                                name="firstName"
+                                onChange={handleChange}
+                                value={firstName}
+                            />
+                        </div>
+                        <div className={cx('box', 'line')}>
+                            <p className={cx('text')}>Last Name</p>
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                placeholder="Last Name"
+                                name="lastName"
+                                onChange={handleChange}
+                                value={lastName}
+                            />
+                        </div>
+                        <div className={cx('box')}>
+                            <p className={cx('text')}>Tên đăng nhập</p>
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                placeholder="Tên đăng nhập"
+                                name="username"
+                                onChange={handleChange}
+                                value={username}
+                            />
+                        </div>
                         <div className={cx('box')}>
                             <p className={cx('text')}>Email</p>
-                            <input className={cx('input')} type="email" placeholder="Email" />
+                            <input
+                                className={cx('input')}
+                                type="email"
+                                placeholder="Email"
+                                name="email"
+                                onChange={handleChange}
+                                value={email}
+                            />
                         </div>
-                    )}
-                    {!login && (
                         <div className={cx('box')}>
                             <p className={cx('text')}>Số điện thoại</p>
-                            <input className={cx('input')} type="email" placeholder="Số điện thoại" />
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                placeholder="Số điện thoại"
+                                name="phoneNumber"
+                                onChange={handleChange}
+                                value={phoneNumber}
+                            />
                         </div>
-                    )}
-
-                    <div className={cx('box')}>
-                        <p className={cx('text')}>Mật khẩu</p>
-                        <input className={cx('input')} type="password" placeholder="Mật khẩu" />
-                    </div>
-                    {!login && (
+                        <div className={cx('box')}>
+                            <p className={cx('text')}>Địa chỉ</p>
+                            <input
+                                className={cx('input')}
+                                type="text"
+                                placeholder="Địa chỉ"
+                                name="address"
+                                onChange={handleChange}
+                                value={address}
+                            />
+                        </div>
+                        <div className={cx('box')}>
+                            <p className={cx('text')}>Mật khẩu</p>
+                            <input
+                                className={cx('input')}
+                                type="password"
+                                placeholder="Mật khẩu"
+                                name="password"
+                                onChange={handleChange}
+                                value={password}
+                            />
+                        </div>
                         <div className={cx('box')}>
                             <p className={cx('text')}>Xác nhận mật khẩu</p>
-                            <input className={cx('input')} type="password" placeholder="Mật khẩu" />
+                            <input
+                                className={cx('input')}
+                                type="password"
+                                placeholder="Mật khẩu"
+                                onChange={(e) => setRePassword(e.target.value)}
+                                value={rePassword}
+                            />
                         </div>
-                    )}
-                    <div className={cx('wrap-btn')}>
-                        <div className={cx('btn', 'back')} onClick={handleShow}>
-                            TRỞ LẠI
-                        </div>
-                        {login ? (
-                            <button className={cx('btn')}>ĐĂNG NHẬP</button>
-                        ) : (
-                            <button className={cx('btn')} onClick={handleRegister}>
+                        <div className={cx('wrap-btn')}>
+                            {check && (
+                                <div className={cx('error')}>
+                                    <span className={cx('icon-err')}>
+                                        <FontAwesomeIcon icon={faExclamationCircle} />
+                                    </span>
+                                    <p className={cx('err-desc')}>{check}</p>
+                                </div>
+                            )}
+                            <div className={cx('btn', 'back')} onClick={handleShow}>
+                                TRỞ LẠI
+                            </div>
+                            <button type="submit" className={cx('btn')}>
                                 ĐĂNG KÝ
                             </button>
-                        )}
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                )}
             </div>
         </div>
     );

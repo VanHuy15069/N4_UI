@@ -47,6 +47,13 @@
 }
 .box {
     margin-bottom: 8px;
+    &.line {
+        display: inline-block;
+        width: 49%;
+    }
+    &.line:nth-child(2) {
+        margin-left: 2%;
+    }
 }
 .title {
     margin-bottom: 10px;
@@ -77,6 +84,7 @@
 .wrap-btn {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 .btn {
     display: flex;
@@ -99,4 +107,17 @@
             background-color: #dfdfdf;
         }
     }
+}
+.error {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    color: rgb(255, 0, 0);
+}
+.icon-err {
+    font-size: 1.3rem;
+}
+.err-desc {
+    margin-left: 4px;
+    font-size: 1.2rem;
 }

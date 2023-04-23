@@ -4,13 +4,14 @@ import Navigation from '~/components/Navigation/Navigation';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBagShopping, faCaretDown, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { Context } from '~/Provider/Provider';
 const cx = classNames.bind(styles);
 const imageLogo = require('./LOGO.png');
+const imageAvatar = require('./User.png');
 function Header() {
-    const [, , , setShow] = useContext(Context);
+    const [state, , user, , , setShow] = useContext(Context);
     const handleLogin = () => {
         setShow(true);
     };
@@ -32,9 +33,19 @@ function Header() {
                         </div>
                     </div>
                     <div className={cx('action')}>
-                        <p className={cx('login-title')} onClick={handleLogin}>
-                            Đăng Nhập
-                        </p>
+                        {state ? (
+                            <div className={cx('user')}>
+                                <img className={cx('img')} src={imageAvatar} alt="" />
+                                <p className={cx('username')}>{user}</p>
+                                <span className={cx('icon-menu')}>
+                                    <FontAwesomeIcon icon={faCaretDown} />
+                                </span>
+                            </div>
+                        ) : (
+                            <p className={cx('login-title')} onClick={handleLogin}>
+                                Đăng Nhập
+                            </p>
+                        )}
                         <Link to={'/cart'} className={cx('cart')}>
                             <FontAwesomeIcon icon={faBagShopping} />
                         </Link>
