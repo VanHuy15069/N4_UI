@@ -7,7 +7,6 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
-export let user;
 function Login() {
     const navigate = useNavigate();
     const [, setSate, , setUser, , setShow] = useContext(Context);
@@ -24,15 +23,16 @@ function Login() {
         address: '',
     });
     const { firstName, lastName, username, email, phoneNumber, password, address } = data;
-    user = data.username;
     const handleRegister = () => {
         setLogin(false);
+        setCheck('');
     };
     const handleShow = () => {
         setShow(false);
     };
     const handleLogin = () => {
         setLogin(true);
+        setCheck('');
     };
     //Lấy value ô input
     const handleChange = (e) => {
@@ -43,6 +43,7 @@ function Login() {
     };
     //SỦ LÝ ĐĂNG KÝ
     const handleSubmitRegister = (e) => {
+        e.preventDefault();
         if (
             !data.firstName ||
             !data.lastName ||
@@ -52,21 +53,19 @@ function Login() {
             !data.address ||
             !data.password
         ) {
-            e.preventDefault();
             setCheck('Bạn nhập thiếu thông tin, vui lòng nhập thêm thông tin!');
         } else if (data.password.length < 8) {
-            e.preventDefault();
             setCheck('Mật khẩu cần có ít nhất 8 kí tự!');
         } else if (data.password !== rePassword) {
-            e.preventDefault();
             setCheck('mật khẩu xác nhận bạn nhập không khớp!');
         } else {
             axios
                 .post('http://localhost:5000/api/v1/auth/register', data)
                 .then((res) => {
-                    console.log(res);
                     if (res.data.err === 0) {
                         setLogin(true);
+                    } else if (res.data.err === 2) {
+                        setCheck(res.data.msg);
                     }
                 })
                 .catch(() => {
@@ -85,10 +84,12 @@ function Login() {
                 .post('http://localhost:5000/api/v1/auth/login', { username: data.username, password: data.password })
                 .then((res) => {
                     if (res.data.err === 0) {
+                        const myUser = JSON.stringify(res.data.response);
+                        setUser(res.data.response);
                         setShow(false);
                         setSate(true);
-                        setUser(data.username);
-                        // localStorage.setItem('token', res.data.token);
+                        localStorage.setItem('token', res.data.token);
+                        localStorage.setItem('userLogin', myUser);
                     } else if (res.data.err === 2) {
                         setCheck(res.data.msg);
                     }

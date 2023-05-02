@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 4px 24px;
+    background-color: #fff;
+    color: #353535;
+    font-size: 1.5rem;
+    &:hover {
+        background-color: #dddddd;
+    }
+}
+.icon {
+    margin-right: 8px;
+}
