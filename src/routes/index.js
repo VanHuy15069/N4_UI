@@ -7,8 +7,6 @@ import Review from '~/Page/Review/Review';
 import Blogs from '~/Page/Blogs/Blogs';
 import LienHe from '~/Page/LienHe/LienHe';
 import Cart from '~/Page/Cart/Cart';
-import AdminLayout from '~/components/AdminLayout';
-import Admin from '~/Page/Admin/Admin';
 const publicRoute = [
     { path: '/', component: Home },
     { path: '/product/nam', component: Product, layout: NoSlider },
@@ -18,6 +16,5 @@ const publicRoute = [
     { path: '/blogs', component: Blogs, layout: NoSlider },
     { path: '/lien-he', component: LienHe, layout: NoSlider },
     { path: '/cart', component: Cart, layout: NoSlider },
-    { path: '/admin', component: Admin, layout: AdminLayout },
 ];
 export { publicRoute };

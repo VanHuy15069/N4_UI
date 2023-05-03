@@ -1,15 +1,22 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { publicRoute } from './routes';
 import { Fragment } from 'react';
 import DefaultLayout from './components/DefaultLayout';
 import { useContext, useEffect } from 'react';
 import { Context } from './Provider/Provider';
+import Admin from './Page/Admin/Admin';
+import AdminLayout from './components/AdminLayout';
 function App() {
     const [, setSate, , setUser, , ,] = useContext(Context);
+    const isUser = JSON.parse(localStorage.getItem('userLogin'));
+    let isAdmin = false;
+    if (isUser) {
+        isAdmin = isUser.admin;
+    }
     //Xác thực người dùng đăng nhập
     useEffect(() => {
-        const token = localStorage.getItem('token');
         const isUser = JSON.parse(localStorage.getItem('userLogin'));
+        const token = localStorage.getItem('token');
         if (token) {
             setSate(true);
             setUser(isUser);
@@ -41,6 +48,19 @@ function App() {
                         />
                     );
                 })}
+                {/* Private route Admin */}
+                <Route
+                    path="/admin"
+                    element={
+                        isAdmin ? (
+                            <AdminLayout>
+                                <Admin />
+                            </AdminLayout>
+                        ) : (
+                            <Navigate to="/" />
+                        )
+                    }
+                />
             </Routes>
         </div>
     );
