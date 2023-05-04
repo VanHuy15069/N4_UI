@@ -1,0 +1,103 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+
+    .maps {
+        margin-top: 60px;
+
+        iframe {
+            border: none;
+            padding: 20px;
+        }
+    }
+
+    .about-our {
+        display: flex;
+        justify-content: space-between;
+
+        .item-1 {
+            display: flex;
+            width: 100%;
+            .item-logo {
+                height: 50px;
+                width: 50px;
+            }
+        }
+        .item-2 {
+            width: 100%;
+            background-color: aquamarine;
+        }
+        .item-3 {
+            width: 100%;
+            background-color: green;
+        }
+    }
+
+    .form-user {
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .input-value {
+            margin-top: 10px;
+            display: flex;
+
+            .input-1 {
+                width: 100%;
+                margin-right: 10px;
+                box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+                input {
+                    width: 380px;
+                    height: 40px;
+                    padding: 0px 10px;
+                    border: none;
+                    background-color: #f1f1f1;
+                    outline: none;
+                }
+
+                textarea {
+                    width: 770px;
+                    height: 100px;
+                    padding: 10px;
+                    outline: none;
+                    border: none;
+                    background-color: #f1f1f1;
+                }
+
+                &:hover {
+                    box-shadow: none;
+                }
+                &:focus {
+                    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+                }
+            }
+        }
+
+        .btn-submit {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+
+            button {
+                width: 400px;
+                height: 40px;
+                color: white;
+                text-transform: uppercase;
+                background-color: #c89979;
+                border: none;
+                font-size: 16px;
+                font-weight: 700;
+
+                &:hover {
+                    cursor: pointer;
+                    background-color: #a07a61;
+                }
+            }
+        }
+        .error {
+            color: rgb(255, 0, 0);
+        }
+    }
+}
