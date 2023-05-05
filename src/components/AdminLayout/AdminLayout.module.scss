@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+}
+.content {
+    flex: 1;
+    margin-top: 50px;
+    margin-left: 220px;
+    background-color: #f2f2fd;
+    min-height: calc(100vh - 50px);
+}

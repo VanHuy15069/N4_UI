@@ -1,0 +1,30 @@
+.wrapper {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    background-color: #353535;
+}
+.nav-bar {
+    width: 100%;
+}
+.nav-bar_item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    color: #efefef;
+    &:hover {
+        background-color: #8d6a53;
+        color: #fff;
+    }
+}
+.icon {
+    margin-right: 6px;
+}
+.nav-bar_title {
+    user-select: none;
+    color: #454545;
+    padding: 8px 16px;
+    background-color: #000000;
+}

@@ -64,6 +64,7 @@ function Login() {
                 .then((res) => {
                     if (res.data.err === 0) {
                         setLogin(true);
+                        setCheck('');
                     } else if (res.data.err === 2) {
                         setCheck(res.data.msg);
                     }
@@ -90,15 +91,23 @@ function Login() {
                         setSate(true);
                         localStorage.setItem('token', res.data.token);
                         localStorage.setItem('userLogin', myUser);
+                        if (res.data.response.admin) {
+                            console.log(res.data.response.admin);
+                            navigate('/admin');
+                        } else {
+                            console.log(res.data.response.admin);
+                            navigate('/');
+                        }
+                        window.location.reload();
                     } else if (res.data.err === 2) {
                         setCheck(res.data.msg);
                     }
                 })
                 .catch(() => {
                     alert('Có lỗi khi gửi dữ liệu tới máy chủ!');
+                    navigate('/');
                 });
         }
-        navigate('/');
     };
     return (
         <div className={cx('wrapper')} onClick={handleShow}>

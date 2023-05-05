@@ -97,22 +97,27 @@
 .username {
     font-size: 1.5rem;
     margin-left: 12px;
-    margin-right: 4px;
+    margin-right: 6px;
 }
 .icon-menu {
     position: relative;
     cursor: pointer;
     &:hover .wrapper-menu {
-        display: block;
+        // display: block;
+        transform: scale(1);
+        opacity: 1;
     }
 }
 .wrapper-menu {
     position: absolute;
     top: 36px;
     right: -26px;
-    animation: Scale linear 0.2s;
-    transform-origin: 80% 0%;
-    display: none;
+    transform: scale(0);
+    opacity: 0;
+    transition: all linear 0.2s;
+    // animation: Scale linear 0.2s;
+    transform-origin: 80% -10%;
+    // display: none;
     // left: 50%;
     // transform: translateX(-50%);
     &::before {
@@ -129,16 +134,16 @@
         z-index: -1;
     }
 }
-@keyframes Scale {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
+// @keyframes Scale {
+//     from {
+//         transform: scale(0);
+//         opacity: 0;
+//     }
+//     to {
+//         transform: scale(1);
+//         opacity: 1;
+//     }
+// }
 .logout {
     border-top: 1px solid var(--primary);
     padding-top: 10px;

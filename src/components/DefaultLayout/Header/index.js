@@ -2,12 +2,14 @@ import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import Navigation from '~/components/Navigation/Navigation';
 import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightFromBracket,
     faBagShopping,
     faCaretDown,
+    faCartShopping,
+    faChalkboardUser,
     faMagnifyingGlass,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +22,7 @@ const imageLogo = require('./LOGO.png');
 const imageAvatar = require('./User.png');
 function Header() {
     const [state, setState, user, setUser, , setShow] = useContext(Context);
+    const navigate = useNavigate();
     const handleLogin = () => {
         setShow(true);
     };
@@ -28,12 +31,14 @@ function Header() {
         setUser();
         localStorage.removeItem('token');
         localStorage.removeItem('userLogin');
+        navigate('/');
+        window.location.reload();
     };
     return (
         <Fragment>
             <div className={cx('wrapper')}>
                 <div className={cx('header')}>
-                    <Link to={'/'} className={cx('logo')}>
+                    <Link to="/" className={cx('logo')}>
                         <img src={imageLogo} alt="" />
                     </Link>
                     <div className={cx('search')}>
@@ -49,14 +54,22 @@ function Header() {
                     <div className={cx('action')}>
                         {state ? (
                             <div className={cx('user')}>
-                                <img className={cx('img')} src={imageAvatar} alt="" />
+                                <Link to="/account">
+                                    <img className={cx('img')} src={imageAvatar} alt="" />
+                                </Link>
                                 <p className={cx('username')}>{user.username}</p>
                                 <span className={cx('icon-menu')}>
                                     <FontAwesomeIcon icon={faCaretDown} />
                                     <MenuUser className={cx('wrapper-menu')}>
-                                        <MenuUserItem icon={faUser} content={'View Profile'} />
-                                        <MenuUserItem icon={faUser} content={'Profile'} />
-                                        <MenuUserItem icon={faUser} content={'Profile'} />
+                                        <Link to="/account">
+                                            <MenuUserItem icon={faUser} content={'Tài khoản'} />
+                                        </Link>
+                                        <MenuUserItem icon={faCartShopping} content={'Đơn hàng'} />
+                                        {user.admin && (
+                                            <Link to="/admin">
+                                                <MenuUserItem icon={faChalkboardUser} content={'Quản lý'} />
+                                            </Link>
+                                        )}
                                         <MenuUserItem
                                             icon={faArrowRightFromBracket}
                                             className={cx('logout')}

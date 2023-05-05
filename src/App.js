@@ -1,11 +1,12 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { publicRoute } from './routes';
+import { publicRoute, adminRoute } from './routes';
 import { Fragment } from 'react';
 import DefaultLayout from './components/DefaultLayout';
 import { useContext, useEffect } from 'react';
 import { Context } from './Provider/Provider';
-import Admin from './Page/Admin/Admin';
 import AdminLayout from './components/AdminLayout';
+import ProfileLayout from './components/ProfileLayout/ProfileLayout';
+import ProfilePage from './Page/ProfilePage/ProfilePage';
 function App() {
     const [, setSate, , setUser, , ,] = useContext(Context);
     const isUser = JSON.parse(localStorage.getItem('userLogin'));
@@ -21,6 +22,9 @@ function App() {
             setSate(true);
             setUser(isUser);
         } else {
+            if (isUser) {
+                localStorage.removeItem('userLogin');
+            }
             setSate(false);
             setUser();
         }
@@ -48,19 +52,38 @@ function App() {
                         />
                     );
                 })}
-                {/* Private route Admin */}
+                {/* private route user */}
                 <Route
-                    path="/admin"
+                    path="/account"
                     element={
-                        isAdmin ? (
-                            <AdminLayout>
-                                <Admin />
-                            </AdminLayout>
+                        isUser ? (
+                            <ProfileLayout>
+                                <ProfilePage />
+                            </ProfileLayout>
                         ) : (
                             <Navigate to="/" />
                         )
                     }
                 />
+                {/* Private route Admin */}
+                {adminRoute.map((route, index) => {
+                    const Page = route.component;
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                isAdmin ? (
+                                    <AdminLayout>
+                                        <Page />
+                                    </AdminLayout>
+                                ) : (
+                                    <Navigate to="/" />
+                                )
+                            }
+                        />
+                    );
+                })}
             </Routes>
         </div>
     );
