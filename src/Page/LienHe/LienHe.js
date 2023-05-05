@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import classNames from 'classnames/bind';
 import styles from './LienHe.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
 const cx = classNames.bind(styles);
@@ -23,7 +22,6 @@ function LienHe() {
         if (!spaceValue.startsWith(' ')) {
             setData({ ...data, [e.target.name]: [e.target.value] });
         }
-        console.log(e.target.value);
     };
 
     let handleRegister = (e) => {
@@ -54,7 +52,9 @@ function LienHe() {
                 </div>
 
                 <div className={cx('item-1')}>
-                    <div className={cx('item-logo')}>{/* <FontAwesomeIcon icon="fas fa-map-signs" /> */}</div>
+                    <div className={cx('item-logo')}>
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
                     <div className="item-text">
                         <h3>Điện thoại</h3>
                         <h4>000000000000000000</h4>
