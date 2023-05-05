@@ -1,9 +1,7 @@
 import classNames from 'classnames';
 import styles from './Contact.modules.scss';
-import { useState } from 'react';
 
 const cx = classNames.bind(styles);
-
 function Contact() {
     let [data, setData] = useState({
         email: '',
@@ -34,27 +32,11 @@ function Contact() {
             </div>
 
             <div className={cx('content-right')}>
-                <div className={cx('top')}>
-                    <div className={cx('input-email')}>
-                        <input
-                            type="email"
-                            placeholder="Email..."
-                            className={cx('email')}
-                            onChange={handleChange}
-                            value={email}
-                            name="email"
-                        />
-                    </div>
-                    <div className={cx('btn-sign-up')}>
-                        <input type="submit" value="Đăng ký" className={cx('sign-up')} onClick={pushData} />
-                    </div>
+                <div className={cx('input-email')}>
+                    <input type="email" placeholder="Email..." className={cx('email')} />
                 </div>
-                <div className={cx('bottom')}>
-                    {check && (
-                        <div className="error">
-                            <p>{check}</p>
-                        </div>
-                    )}
+                <div className={cx('btn-sign-up')}>
+                    <input type="submit" value="Đăng ký" className={cx('sign-up')} />
                 </div>
             </div>
         </div>
