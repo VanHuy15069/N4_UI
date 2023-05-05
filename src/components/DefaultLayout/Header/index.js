@@ -43,7 +43,7 @@ function Header() {
                     </Link>
                     <div className={cx('search')}>
                         <div className={cx('wrapper-input')}>
-                            <input className={cx('input')} type="text" />
+                            <input className={cx('input')} type="text" placeholder="Tìm kiếm..." />
                             <button className={cx('btn-search')}>
                                 <span className={cx('icon-search')}>
                                     <FontAwesomeIcon icon={faMagnifyingGlass} />

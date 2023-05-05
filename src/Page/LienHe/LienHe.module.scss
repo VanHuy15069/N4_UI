@@ -8,7 +8,7 @@
 
         iframe {
             border: none;
-            padding: 20px;
+            padding: 15px;
         }
     }
 
@@ -100,4 +100,9 @@
             color: rgb(255, 0, 0);
         }
     }
+}
+.item-logo {
+    display: flex;
+    justify-content: center;
+    font-size: 2.7rem;
 }

@@ -3,12 +3,13 @@ import classNames from 'classnames/bind';
 import styles from './LienHe.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
+import { faEnvelope, faLocationDot, faSquarePhone } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
 function LienHe() {
-    let [check, setCheck] = useState('');
-    let [data, setData] = useState({
+    const [check, setCheck] = useState('');
+    const [data, setData] = useState({
         username: '',
         email: '',
         phoneNumber: '',
@@ -16,7 +17,7 @@ function LienHe() {
         message: '',
     });
 
-    let { username, email, phoneNumber, address, message } = data;
+    const { username, email, phoneNumber, address, message } = data;
 
     let handleChange = (e) => {
         let spaceValue = e.target.value;
@@ -39,35 +40,40 @@ function LienHe() {
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4737884515184!2d105.7325318752119!3d21.05373098060188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345457e292d5bf%3A0x20ac91c94d74439a!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1683199430147!5m2!1svi!2s"
                     width="1200"
                     height="600"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
             </div>
 
             <div className={cx('about-our')}>
                 <div className={cx('item-1')}>
-                    <div className={cx('item-logo')}>{/* <FontAwesomeIcon icon="fas fa-map-signs" /> */}</div>
-                    <div className="item-text">
+                    <span className={cx('item-logo')}>
+                        <FontAwesomeIcon icon={faLocationDot} />
+                    </span>
+                    <div className={cx('item-text')}>
                         <h3>Địa chỉ</h3>
                         <p>Số 298 Đ. Cầu Diễn, Minh Khai, Bắc Từ Liêm, Hà Nội</p>
                     </div>
                 </div>
 
                 <div className={cx('item-1')}>
-                    <div className={cx('item-logo')}>{/* <FontAwesomeIcon icon="fas fa-map-signs" /> */}</div>
-                    <div className="item-text">
+                    <span className={cx('item-logo')}>
+                        <FontAwesomeIcon icon={faSquarePhone} />
+                    </span>
+                    <div className={cx('item-text')}>
                         <h3>Điện thoại</h3>
-                        <h4>000000000000000000</h4>
+                        <h4>1900 636 648</h4>
                         <p>19001000 - Phòng kỹ thuật</p>
                         <p>19888877 - Phòng CSKH</p>
                     </div>
                 </div>
 
                 <div className={cx('item-1')}>
-                    <div className={cx('item-logo')}>{/* <FontAwesomeIcon icon="fas fa-map-signs" /> */}</div>
-                    <div className="item-text">
+                    <span className={cx('item-logo')}>
+                        <FontAwesomeIcon icon={faEnvelope} />
+                    </span>
+                    <div className={cx('item-text')}>
                         <h3>Email</h3>
-                        <p>email is here</p>
+                        <p>n4vippromax@gmail.com</p>
                     </div>
                 </div>
             </div>
