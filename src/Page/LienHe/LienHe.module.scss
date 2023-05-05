@@ -5,7 +5,6 @@
 
     .maps {
         margin-top: 60px;
-
         iframe {
             border: none;
             padding: 15px;
@@ -15,13 +14,17 @@
     .about-our {
         display: flex;
         justify-content: space-between;
-
         .item-1 {
+            flex: 1;
             display: flex;
             width: 100%;
             .item-logo {
                 height: 50px;
                 width: 50px;
+                i {
+                    font-size: 20px;
+                    color: black;
+                }
             }
         }
         .item-2 {

@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import classNames from 'classnames/bind';
 import styles from './LienHe.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLocationDot, faSquarePhone } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
@@ -24,7 +24,6 @@ function LienHe() {
         if (!spaceValue.startsWith(' ')) {
             setData({ ...data, [e.target.name]: [e.target.value] });
         }
-        console.log(e.target.value);
     };
 
     let handleRegister = (e) => {
@@ -60,13 +59,14 @@ function LienHe() {
                         <FontAwesomeIcon icon={faSquarePhone} />
                     </span>
                     <div className={cx('item-text')}>
-                        <h3>Điện thoại</h3>
-                        <h4>1900 636 648</h4>
-                        <p>19001000 - Phòng kỹ thuật</p>
-                        <p>19888877 - Phòng CSKH</p>
+                        <div className="item-text">
+                            <h3>Điện thoại</h3>
+                            <h4>1900 636 648</h4>
+                            <p>19001000 - Phòng kỹ thuật</p>
+                            <p>19888877 - Phòng CSKH</p>
+                        </div>
                     </div>
                 </div>
-
                 <div className={cx('item-1')}>
                     <span className={cx('item-logo')}>
                         <FontAwesomeIcon icon={faEnvelope} />
@@ -77,7 +77,6 @@ function LienHe() {
                     </div>
                 </div>
             </div>
-
             <div className={cx('form-user')}>
                 <form onSubmit={handleRegister}>
                     <div className={cx('input-value')}>
