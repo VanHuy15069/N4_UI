@@ -17,9 +17,9 @@ import { useContext } from 'react';
 import { Context } from '~/Provider/Provider';
 import MenuUser from '../MenuUser/MenuUser';
 import MenuUserItem from '../MenuUser/MenuUserItem/MenuUserItem';
+import Avarta from '../Avarta/Avatar';
 const cx = classNames.bind(styles);
 const imageLogo = require('./LOGO.png');
-const imageAvatar = require('./User.png');
 function Header() {
     const [state, setState, user, setUser, , setShow] = useContext(Context);
     const navigate = useNavigate();
@@ -55,7 +55,12 @@ function Header() {
                         {state ? (
                             <div className={cx('user')}>
                                 <Link to="/account">
-                                    <img className={cx('img')} src={imageAvatar} alt="" />
+                                    <div className={cx('wrapper-avarta')}>
+                                        <Avarta>
+                                            {user.firstName.slice(0, 1)}
+                                            {user.lastName.slice(0, 1)}
+                                        </Avarta>
+                                    </div>
                                 </Link>
                                 <p className={cx('username')}>{user.username}</p>
                                 <span className={cx('icon-menu')}>

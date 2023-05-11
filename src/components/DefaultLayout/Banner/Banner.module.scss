@@ -1,0 +1,16 @@
+.wrapper {
+    width: 585px;
+    height: 300px;
+    overflow: hidden;
+    &:hover .img {
+        transform: scale(1.1);
+    }
+}
+.img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform linear 0.3s;
+}

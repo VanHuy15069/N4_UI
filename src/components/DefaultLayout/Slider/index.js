@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Slider.module.scss';
+import { sliderCurnon } from '~/Images/images';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper';
 import 'swiper/css';
@@ -11,25 +12,22 @@ function Slider() {
         <div className={cx('wrapper')}>
             <Swiper
                 loop={true}
+                speed={700}
                 rewind={false}
                 navigation={true}
                 modules={[Navigation, Autoplay]}
-                autoplay={{ delay: 2500, disableOnInteraction: false }}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
                 className="wrapper-slider"
             >
                 <SwiperSlide>
                     <img
                         className={cx('slider-img')}
-                        src="https://tiemchupanh.com/wp-content/uploads/2021/10/deo-dong-ho-tay-nao.jpg"
+                        src="https://galle.vn/upload_images/images/2021/11/05/rolex.jpg"
                         alt=""
                     />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img
-                        className={cx('slider-img')}
-                        src="https://curnonwatch.com/blog/wp-content/uploads/2021/03/dong-ho-deo-taybia.jpg"
-                        alt=""
-                    />
+                    <img className={cx('slider-img')} src={sliderCurnon} alt="" />
                 </SwiperSlide>
                 <SwiperSlide>
                     <img
@@ -41,7 +39,7 @@ function Slider() {
                 <SwiperSlide>
                     <img
                         className={cx('slider-img')}
-                        src="https://thejulius.com.vn/wp-content/uploads/2019/12/IMG_7068-1200x800.jpg"
+                        src="https://thejulius.com.vn/wp-content/uploads/2022/04/MUA-NHIEU-GIAM-NHIEU.jpg"
                         alt=""
                     />
                 </SwiperSlide>

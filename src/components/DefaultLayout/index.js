@@ -11,7 +11,7 @@ function DefaultLayout({ children }) {
             <Header />
             <Slider />
             <div className={cx('container')}>
-                {children}
+                <div>{children}</div>
                 <Contact />
             </div>
             <Footer />

@@ -1,12 +1,82 @@
 .wrapper {
     display: flex;
     max-width: 1230px;
-    padding: 0 15px;
-    margin: 0 auto;
+    // border: 2px solid rgba($color: #4d4d4d, $alpha: 0.1);
+    box-shadow: 0 0 8px 6px rgba($color: #000000, $alpha: 0.3);
+    margin: 40px auto;
+    max-height: 400px;
+    min-height: 400px;
+    background-color: #e8f1fd;
+}
+.header {
+    display: flex;
+    align-items: center;
+}
+.icon {
+    margin-left: 8px;
+    padding: 4px;
+    cursor: pointer;
 }
 .nav-bar {
-    width: 33%;
+    border-right: 2px solid rgba($color: #000000, $alpha: 0.2);
+    padding: 24px 28px;
+    width: 30%;
 }
 .container {
     flex: 1;
+}
+.text {
+    font-size: 1.8rem;
+    padding: 12px 0;
+}
+.infor {
+    margin-left: 8px;
+    font-weight: bold;
+}
+.button {
+    display: flex;
+    justify-self: center;
+}
+.btn {
+    cursor: pointer;
+    font-size: 1.6rem;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(13, 227, 67);
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 24px;
+    margin: 0 auto;
+    &:hover {
+        background-color: rgb(0, 210, 52);
+    }
+}
+.table {
+    tr td {
+        font-size: 1.6rem;
+        margin: 8px 0;
+        padding: 8px 0;
+    }
+}
+.input {
+    padding: 8px;
+    margin-left: 8px;
+    width: 340px;
+    font-size: 1.5rem;
+    outline: none;
+    border: 1px solid rgba($color: #333, $alpha: 0.5);
+}
+.wrapper-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+.update-btn {
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    background-color: rgb(13, 227, 67);
+    padding: 8px 28px;
+    border-radius: 5px;
+    cursor: pointer;
 }

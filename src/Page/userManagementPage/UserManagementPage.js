@@ -1,17 +1,17 @@
 import classNames from 'classnames/bind';
 import styles from './UserManagement.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faTrashCan, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import BoxMSG from '~/components/AdminLayout/BoxMSG/BoxMSG';
 const cx = classNames.bind(styles);
 function UserManagementPage() {
-    const [name, setName] = useState('');
+    const [user, setUser] = useState({});
+    const [control, setControl] = useState(false);
     //biến length để rerender useEffect
     const [length, setLength] = useState(0);
     const [data, setData] = useState([]);
-    const [id, setId] = useState();
     const [showBox, setShowBox] = useState(false);
     //get tất cả khách hàng
     useEffect(() => {
@@ -31,14 +31,19 @@ function UserManagementPage() {
     }, [length]);
     //show box thông báo
     const onShowMSG = (user) => {
-        setName(`${user.firstName} ${user.lastName}`);
-        setId(user.id);
+        setControl(true);
+        setUser(user);
+        setShowBox(true);
+    };
+    const onShowInfor = (user) => {
+        setControl(false);
+        setUser(user);
         setShowBox(true);
     };
     //xóa user theo id
     const handleDelete = () => {
         axios
-            .delete(`http://localhost:5000/api/v1/user/${id}`, {
+            .delete(`http://localhost:5000/api/v1/user/${user.id}`, {
                 headers: {
                     token: 'Bearer ' + localStorage.getItem('token'),
                 },
@@ -69,8 +74,7 @@ function UserManagementPage() {
                             <th>Tên khách hàng</th>
                             <th>Email</th>
                             <th>Số điện thoại</th>
-                            <th>Địa chỉ</th>
-                            <th>Thao tác</th>
+                            <th colSpan={2}>Thao tác</th>
                         </tr>
                         {/* render data user */}
                         {data.map((user) => {
@@ -78,16 +82,34 @@ function UserManagementPage() {
                                 //nếu là admin thì không render
                                 !user.admin && (
                                     <tr key={user.id}>
-                                        <td>{user.id}</td>
+                                        <td className={cx('text-center')}>{user.id}</td>
                                         <td>
-                                            {user.firstName} {user.lastName}
+                                            <p className={cx('m-left')}>
+                                                {user.firstName} {user.lastName}
+                                            </p>
                                         </td>
-                                        <td>{user.email}</td>
-                                        <td>{user.phoneNumber}</td>
-                                        <td>{user.address}</td>
                                         <td>
+                                            <p className={cx('m-left')}>{user.email}</p>
+                                        </td>
+
+                                        <td>
+                                            <p className={cx('m-left')}>{user.phoneNumber}</p>
+                                        </td>
+                                        <td className={cx('text-center')}>
                                             {/* get data user được chọn */}
-                                            <button onClick={() => onShowMSG(user)} className={cx('btn')}>
+                                            <button onClick={() => onShowInfor(user)} className={cx('btn')}>
+                                                <span className={cx('icon-btn')}>
+                                                    <FontAwesomeIcon icon={faEye} />
+                                                </span>
+                                                Xem
+                                            </button>
+                                        </td>
+                                        <td className={cx('text-center')}>
+                                            {/* get data user được chọn */}
+                                            <button onClick={() => onShowMSG(user)} className={cx('btn', 'btn-delete')}>
+                                                <span className={cx('icon-btn')}>
+                                                    <FontAwesomeIcon icon={faTrashCan} />
+                                                </span>
                                                 Xóa
                                             </button>
                                         </td>
@@ -100,11 +122,51 @@ function UserManagementPage() {
             </div>
             {/* box thông báo */}
             {showBox && (
-                <BoxMSG
-                    message={`Xác nhận xóa khách hàng ${name}`}
-                    onClickHide={() => setShowBox(false)}
-                    onClickOK={handleDelete}
-                />
+                <BoxMSG control={control} onClickHide={() => setShowBox(false)} onClickOK={handleDelete}>
+                    {control ? (
+                        <p>
+                            Xác nhận xóa khách hàng{' '}
+                            <span className={cx('name')}>
+                                {user.firstName} {user.lastName}
+                            </span>
+                        </p>
+                    ) : (
+                        <div className={cx('wrapper-box')}>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>ID</td>
+                                        <td>{user.id}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tên đănh nhập</td>
+                                        <td>{user.username}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td>{user.firstName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name</td>
+                                        <td>{user.lastName}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td>{user.email}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Số điện thoại</td>
+                                        <td>{user.phoneNumber}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Địa chỉ</td>
+                                        <td>{user.address}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </BoxMSG>
             )}
         </div>
     );

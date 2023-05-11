@@ -1,0 +1,28 @@
+.wrapper {
+    // padding: 60px 0;
+    display: block;
+}
+.banner {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+.products {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.box-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.line {
+    display: block;
+    width: 80px;
+    border-bottom: 2px solid #000;
+}
+.title {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    margin: 0 8px 12px 8px;
+}

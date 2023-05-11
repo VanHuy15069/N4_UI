@@ -24,6 +24,8 @@
     padding: 30px 20px;
     margin: auto;
     animation: showForm ease-out 0.4s;
+    max-height: calc(100vh - 30px);
+    overflow-y: scroll;
 }
 @keyframes showForm {
     from {

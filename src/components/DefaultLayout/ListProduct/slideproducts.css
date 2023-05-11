@@ -1,15 +1,15 @@
-.wrapper-slider .swiper-button-next,
-.wrapper-slider .swiper-button-prev {
+.wrapper-slider_product .swiper-button-next,
+.wrapper-slider_product .swiper-button-prev {
     display: none;
 }
-.wrapper-slider:hover .swiper-button-next {
+.wrapper-slider_product:hover .swiper-button-next {
     display: block;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(46, 44, 44, 0.5);
     animation: renderNext ease-in-out 0.3s;
 }
-.wrapper-slider:hover .swiper-button-prev {
+.wrapper-slider_product:hover .swiper-button-prev {
     display: block;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(46, 44, 44, 0.5);
     animation: renderPrev ease-in-out 0.3s;
 }
 @keyframes renderNext {

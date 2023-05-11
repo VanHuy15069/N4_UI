@@ -1,14 +1,7 @@
-.wrapper {
-    padding: 0 16px;
-}
-.header {
-    display: flex;
-    align-items: center;
-    padding: 16px 0;
-}
-.icon {
-    font-size: 2rem;
-    margin-right: 8px;
+.img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
 }
 .data-table {
     min-height: calc(100vh - 50px - 70.4px);
@@ -25,15 +18,9 @@
     }
     & td {
         padding: 6px 4px;
-        // text-align: center;
+        text-align: center;
         border: 2px solid rgba($color: #c89979, $alpha: 0.2);
     }
-}
-.text-center {
-    text-align: center;
-}
-.m-left {
-    margin: 0 12px;
 }
 .btn {
     cursor: pointer;
@@ -49,18 +36,20 @@
 .icon-btn {
     margin-right: 4px;
 }
-.wrapper-box {
-    font-size: 2rem;
-    & table {
-        border-collapse: collapse;
-    }
-    & table tr {
-        border-bottom: 1px solid rgba($color: #84969e, $alpha: 0.6);
-    }
-    & table td {
-        padding: 8px 24px;
+.add-table {
+    & tr {
+        padding: 4px 0;
     }
 }
-.name {
-    font-weight: bold;
+.input {
+    width: 460px;
+    padding: 6px 4px;
+    margin-left: 8px;
+    border: 1px solid #535353;
+    outline: none;
+    border-radius: 4px;
+    & option {
+        border-radius: 2px;
+        height: 20px;
+    }
 }

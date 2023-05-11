@@ -1,0 +1,36 @@
+.container {
+    margin-bottom: 44px;
+}
+.title {
+    color: #333;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+}
+.line {
+    border-bottom: 3px solid rgba($color: #c4c4c4, $alpha: 0.5);
+    margin-top: 8px;
+    margin-bottom: 16px;
+    width: 40px;
+}
+// .box {
+//     border-top: 1px solid #333;
+// }
+.category {
+    font-size: 1.8rem;
+    color: #333;
+    line-height: 4rem;
+    border-bottom: 1px solid rgba($color: #c4c4c4, $alpha: 0.5);
+    cursor: pointer;
+    &:hover {
+        color: var(--primary);
+    }
+}
+.menu-item {
+    display: block;
+    &:hover .tcategory {
+        color: var(--primary);
+    }
+    &.active .category {
+        color: var(--primary);
+    }
+}

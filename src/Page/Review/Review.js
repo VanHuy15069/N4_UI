@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Review.module.scss';
 import ReviewItem from './ReviewItem/ReviewItem';
 import { faProductHunt } from '@fortawesome/free-brands-svg-icons';
+import { sliderCurnon } from '~/Images/images';
 import {
     faCircleCheck,
     faClockRotateLeft,
@@ -14,11 +15,7 @@ function Review() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('my-group')}>
-                <img
-                    className={cx('img')}
-                    src="https://blog.leflair.com/wp-content/uploads/2022/02/chinh-dong-ho-co-orient-1200x900.jpg"
-                    alt=""
-                />
+                <img className={cx('img')} src={sliderCurnon} alt="" />
                 <div className={cx('information')}>
                     <h1 className={cx('title')}>Giới thiệu về N4 Watch</h1>
                     <p className={cx('text')}>

@@ -32,7 +32,7 @@ function Navbar() {
                         <p className={cx('text')}>Tin tức</p>
                     </div>
                 </Link>
-                <Link to="/">
+                <Link to="/admin/product">
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faLeaf} />
@@ -40,7 +40,7 @@ function Navbar() {
                         <p className={cx('text')}>Sản phẩm</p>
                     </div>
                 </Link>
-                <Link to="/">
+                <Link to="/admin/category">
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faRectangleList} />
