@@ -8,6 +8,7 @@ import {
     faNewspaper,
     faRectangleList,
     faUsers,
+    faMessage,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
@@ -21,6 +22,14 @@ function Navbar() {
                             <FontAwesomeIcon icon={faChartColumn} />
                         </span>
                         <p className={cx('text')}>Thống kê</p>
+                    </div>
+                </Link>
+                <Link to="/admin/feedback">
+                    <div className={cx('nav-bar_item')}>
+                        <span className={cx('icon')}>
+                            <FontAwesomeIcon icon={faMessage} />
+                        </span>
+                        <p className={cx('text')}>Phản hồi</p>
                     </div>
                 </Link>
                 <div className={cx('nav-bar_title')}>Quản lý cửa hàng</div>

@@ -11,6 +11,7 @@ import Admin from '~/Page/Admin/Admin';
 import UserManagementPage from '~/Page/userManagementPage/UserManagementPage';
 import CategoryPage from '~/Page/CategoryPage/CategoryPage';
 import ProductManagement from '~/Page/ProductManagement/ProductManagement';
+import Feedback from '~/Page/Feedback/Feedback';
 const publicRoute = [
     { path: '/', component: Home },
     { path: '/product/nam', component: Product, layout: NoSlider },
@@ -26,5 +27,6 @@ const adminRoute = [
     { path: '/admin/user', component: UserManagementPage },
     { path: '/admin/category', component: CategoryPage },
     { path: '/admin/product', component: ProductManagement },
+    { path: '/admin/feedback', component: Feedback },
 ];
 export { publicRoute, adminRoute };
