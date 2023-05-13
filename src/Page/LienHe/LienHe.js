@@ -1,9 +1,8 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
 import classNames from 'classnames/bind';
 import styles from './LienHe.module.scss';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLocationDot, faSquarePhone} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLocationDot, faSquarePhone } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 
@@ -36,6 +35,7 @@ function LienHe() {
         <div className={cx('wrapper')}>
             <div className={cx('maps')}>
                 <iframe
+                    title="map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4737884515184!2d105.7325318752119!3d21.05373098060188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345457e292d5bf%3A0x20ac91c94d74439a!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1683199430147!5m2!1svi!2s"
                     width="1200"
                     height="600"
