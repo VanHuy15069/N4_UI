@@ -21,10 +21,9 @@ function LienHe() {
     let handleChange = (e) => {
         let spaceValue = e.target.value;
         if (!spaceValue.startsWith(' ')) {
-            setData({ ...data, [e.target.name]: [e.target.value] });
+            setData({ ...data, [e.target.name]: e.target.value });
         }
     };
-
     let handleRegister = (e) => {
         e.preventDefault();
         if (!data.username || !data.email || !data.address || !data.phoneNumber || !data.message) {
