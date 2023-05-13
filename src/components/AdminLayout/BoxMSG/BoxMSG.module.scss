@@ -20,6 +20,9 @@
     background-color: #fff;
     box-shadow: 0 0 8px 2px rgba($color: #000000, $alpha: 0.4);
     animation: showBox ease-in-out 0.3s;
+    &.maxWidth {
+        max-width: 600px;
+    }
 }
 @keyframes showBox {
     from {
@@ -38,7 +41,7 @@
 .control {
     display: flex;
     justify-content: space-between;
-    margin: 8px 0;
+    margin: 8px 12px;
 }
 .btn {
     font-weight: bold;
@@ -67,4 +70,10 @@
     font-weight: bold;
     top: -18px;
     right: -18px;
+}
+.check-err {
+    color: red;
+    font-size: 1.4rem;
+    text-align: center;
+    font-weight: 300;
 }

@@ -17,10 +17,31 @@
         padding: 2px 0;
     }
     & td {
-        padding: 6px 4px;
+        width: fit-content;
+        max-width: 420px;
+        padding: 6px 8px;
         text-align: center;
         border: 2px solid rgba($color: #c89979, $alpha: 0.2);
     }
+    & td p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+.row-img {
+    display: flex;
+    align-items: center;
+}
+.wrapper-img {
+    height: 80px;
+    width: 80px;
+}
+.img-upload {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .btn {
     cursor: pointer;

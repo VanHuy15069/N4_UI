@@ -1,10 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './BoxMSG.module.scss';
 const cx = classNames.bind(styles);
-function BoxMSG({ children, onClickOK, onClickHide, control = false, type }) {
+function BoxMSG({ children, onClickOK, onClickHide, control = false, type, maxWidth = false, messageErr }) {
+    const className = cx('box', { maxWidth });
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('box')}>
+            <div className={className}>
                 <div className={cx('message')}>{children}</div>
                 {control ? (
                     <div className={cx('control')}>
@@ -20,6 +21,7 @@ function BoxMSG({ children, onClickOK, onClickHide, control = false, type }) {
                         X
                     </div>
                 )}
+                {messageErr && <p className={cx('check-err')}>Có lỗi! {messageErr}</p>}
             </div>
         </div>
     );
