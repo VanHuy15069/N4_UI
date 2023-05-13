@@ -17,8 +17,8 @@ function ProductManagement() {
         quantity: '',
         summary: '',
     });
-    const [addQuantity, setAddQuantity] = useState(0);
-    const [showAddQuantity, setShowAddQuantity] = useState(false);
+    // const [addQuantity, setAddQuantity] = useState(0);
+    // const [showAddQuantity, setShowAddQuantity] = useState(false);
     const [check, setCheck] = useState('');
     const [showForm, setShowForm] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
@@ -94,9 +94,10 @@ function ProductManagement() {
                 setValue({ ...value, [e.target.name]: e.target.value });
             } else if (showForm) {
                 setProduct({ ...product, [e.target.name + 'Old']: e.target.value });
-            } else if (showAddQuantity) {
-                setAddQuantity(e.target.value);
             }
+            // else if (showAddQuantity) {
+            //     setAddQuantity(e.target.value);
+            // }
         }
     };
     const handleChangeOption = (e) => {
@@ -121,24 +122,24 @@ function ProductManagement() {
             summaryOld: product.summary,
         });
     };
-    const handleAddQuantity = (product) => {
-        setShowAddQuantity(true);
-        setProduct({
-            id: product.id,
-            titleOld: product.title,
-            priceOld: product.price,
-            weightOld: product.weight,
-            quantityOld: product.quantity,
-            summaryOld: product.summary,
-        });
-    };
-    const handleQuantity = (e) => {
-        e.preventDefault();
-        axios
-            .put(`http://localhost:5000/api/v1/product/${product.id}`, { quantity: product.quantityOld + addQuantity })
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err));
-    };
+    // const handleAddQuantity = (product) => {
+    //     setShowAddQuantity(true);
+    //     setProduct({
+    //         id: product.id,
+    //         titleOld: product.title,
+    //         priceOld: product.price,
+    //         weightOld: product.weight,
+    //         quantityOld: product.quantity,
+    //         summaryOld: product.summary,
+    //     });
+    // };
+    // const handleQuantity = (e) => {
+    //     e.preventDefault();
+    //     axios
+    //         .put(`http://localhost:5000/api/v1/product/${product.id}`, { quantity: product.quantityOld + addQuantity })
+    //         .then((res) => console.log(res))
+    //         .catch((err) => console.log(err));
+    // };
     const handleAddProduct = (e) => {
         e.preventDefault();
         if (!value.title || !value.price || !value.weight || !value.quantity || !value.summary) {
@@ -258,7 +259,7 @@ function ProductManagement() {
                                             <td>
                                                 <button
                                                     className={cx('btn')}
-                                                    onClick={() => handleAddQuantity(product)}
+                                                    // onClick={() => handleAddQuantity(product)}
                                                 >
                                                     <span className={cx('icon-btn')}>
                                                         <FontAwesomeIcon icon={faPlus} />
@@ -543,14 +544,14 @@ function ProductManagement() {
                     Xác nhận xóa sản phẩm: <span style={{ fontWeight: 'bold' }}>{product.titleOld}</span>
                 </BoxMSG>
             )}
-            {showAddQuantity && (
+            {/* {showAddQuantity && (
                 <BoxMSG onClickOK={handleQuantity} onClickHide={() => setShowAddQuantity(false)} control type="submit">
                     <form>
                         <p>Nhập số lượng cần thêm</p>
                         <input type="text" name="quantity" onChange={handleChange} value={addQuantity} />
                     </form>
                 </BoxMSG>
-            )}
+            )} */}
         </div>
     );
 }
