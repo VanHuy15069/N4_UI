@@ -39,13 +39,13 @@ function Home() {
                     <Banner src={bannerFemale} />
                 </Link>
             </div>
-            <ListProduct products={featuredProducts} title="Sản phẩm nổi bật" />
-            <ListProduct products={newProducts.slice(0, 8)} title="Sản phẩm mới nhất" />
-            <ListProduct products={curnons.slice(0, 8)} title="Thương hiệu Curnon " rewind />
-            <ListProduct products={julius.slice(0, 8)} title="Thương hiệu Julius" rewind />
-            <ListProduct products={nakzens.slice(0, 8)} title="Thương hiệu Nakzen" rewind />
-            <ListProduct products={rolexs.slice(0, 8)} title="Thương hiệu Rolex" rewind />
-            <ListProduct products={rossinis.slice(0, 8)} title="Thương hiệu Rossini" rewind />
+            <ListProduct products={featuredProducts} slidesPerView={4} title="Sản phẩm nổi bật" />
+            <ListProduct products={newProducts.slice(0, 8)} slidesPerView={4} title="Sản phẩm mới nhất" />
+            <ListProduct products={curnons.slice(0, 8)} slidesPerView={4} title="Thương hiệu Curnon " rewind />
+            <ListProduct products={julius.slice(0, 8)} slidesPerView={4} title="Thương hiệu Julius" rewind />
+            <ListProduct products={nakzens.slice(0, 8)} slidesPerView={4} title="Thương hiệu Nakzen" rewind />
+            <ListProduct products={rolexs.slice(0, 8)} slidesPerView={4} title="Thương hiệu Rolex" rewind />
+            <ListProduct products={rossinis.slice(0, 8)} slidesPerView={4} title="Thương hiệu Rossini" rewind />
         </div>
     );
 }

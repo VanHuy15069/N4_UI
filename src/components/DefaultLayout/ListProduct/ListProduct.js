@@ -7,23 +7,34 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './slideproducts.css';
 const cx = classNames.bind(styles);
-function ListProduct({ products, title, rewind = false }) {
+function ListProduct({
+    products,
+    title,
+    rewind = false,
+    slidesPerView,
+    classNameImg = false,
+    onClick,
+    mTopNull = false,
+}) {
     const VND = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND',
     });
+    const classname = cx('products', { mTopNull });
     return (
-        <div className={cx('products')}>
-            <div className={cx('box-title')}>
-                <span className={cx('line')}></span>
-                <p className={cx('title')}>{title}</p>
-                <span className={cx('line')}></span>
-            </div>
-            <div className={cx('produce-list')}>
+        <div className={classname}>
+            {title && (
+                <div className={cx('box-title')}>
+                    <span className={cx('line')}></span>
+                    <p className={cx('title')}>{title}</p>
+                    <span className={cx('line')}></span>
+                </div>
+            )}
+            <div className={cx('products-list')}>
                 {products.length > 0 ? (
                     <Swiper
                         loop={!rewind}
-                        slidesPerView={4}
+                        slidesPerView={slidesPerView}
                         spaceBetween={30}
                         rewind={rewind}
                         navigation={true}
@@ -38,6 +49,8 @@ function ListProduct({ products, title, rewind = false }) {
                                         src={`http://localhost:5000/src/${product.image}`}
                                         title={product.title}
                                         price={VND.format(product.price)}
+                                        classNameImg={classNameImg}
+                                        onClick={onClick}
                                     />
                                 </SwiperSlide>
                             );

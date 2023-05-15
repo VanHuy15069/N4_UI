@@ -32,7 +32,7 @@ function Slider() {
                 <SwiperSlide>
                     <img
                         className={cx('slider-img')}
-                        src="https://www.thegioidongho.com.vn/wp-content/uploads/2023/03/40TH-ANniversary.jpg"
+                        src="https://donghouytin.vn/wp-content/uploads/2022/03/dong-ho-uy-tin-banner-1.jpg"
                         alt=""
                     />
                 </SwiperSlide>

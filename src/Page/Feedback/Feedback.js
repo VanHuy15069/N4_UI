@@ -1,29 +1,28 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Feedback.module.scss';
-import Wrapper from '~/components/Wrapper/Wrapper';
-import { faComment, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from 'axios';
+// import Wrapper from '~/components/Wrapper/Wrapper';
+// import { faComment, faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
 export default function Feedback() {
-    const [length] = useState(0);
-    const [feedback, setFeedback] = useState([]);
-    useEffect(() => {
-        axios
-            .get('http://localhost:5000/api/v1/contact/feedback')
-            .then((res) => {
-                setFeedback(res.data.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, [length]);
+    // const [feedback, setFeedback] = useState([]);
+    // useEffect(() => {
+    //     axios
+    //         .get('http://localhost:5000/api/v1/contact/feedback')
+    //         .then((res) => {
+    //             setFeedback(res.data.data);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    // }, []);
     return (
         <div className={cx('wrapper')}>
-            <Wrapper header="Phản hồi khách hàng" icon={faComment}>
+            {/* <Wrapper header="Phản hồi khách hàng" icon={faComment}>
                 <div className={cx('data-table')}>
                     <table className={cx('table')}>
                         <tbody>
@@ -65,7 +64,7 @@ export default function Feedback() {
                         </tbody>
                     </table>
                 </div>
-            </Wrapper>
+            </Wrapper> */}
         </div>
     );
 }

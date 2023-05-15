@@ -9,6 +9,9 @@
 .nav-bar {
     width: 100%;
 }
+.active .nav-bar_item {
+    background-color: #8d6a53;
+}
 .nav-bar_item {
     display: flex;
     align-items: center;

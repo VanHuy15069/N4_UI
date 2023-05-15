@@ -10,28 +10,28 @@ import {
     faUsers,
     faMessage,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 const cx = classNames.bind(styles);
 function Navbar() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('nav-bar')}>
-                <Link to="/admin">
+                <NavLink to="/admin" end className={(nav) => cx({ active: nav.isActive })}>
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faChartColumn} />
                         </span>
                         <p className={cx('text')}>Thống kê</p>
                     </div>
-                </Link>
-                <Link to="/admin/feedback">
+                </NavLink>
+                <NavLink to="/admin/feedback" end className={(nav) => cx({ active: nav.isActive })}>
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faMessage} />
                         </span>
                         <p className={cx('text')}>Phản hồi</p>
                     </div>
-                </Link>
+                </NavLink>
                 <div className={cx('nav-bar_title')}>Quản lý cửa hàng</div>
                 <Link to="/">
                     <div className={cx('nav-bar_item')}>
@@ -41,31 +41,31 @@ function Navbar() {
                         <p className={cx('text')}>Tin tức</p>
                     </div>
                 </Link>
-                <Link to="/admin/product">
+                <NavLink to="/admin/product" end className={(nav) => cx({ active: nav.isActive })}>
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faLeaf} />
                         </span>
                         <p className={cx('text')}>Sản phẩm</p>
                     </div>
-                </Link>
-                <Link to="/admin/category">
+                </NavLink>
+                <NavLink to="/admin/category" end className={(nav) => cx({ active: nav.isActive })}>
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faRectangleList} />
                         </span>
                         <p className={cx('text')}>Loại sản phẩm</p>
                     </div>
-                </Link>
+                </NavLink>
                 <div className={cx('nav-bar_title')}>Quản lý bán hàng</div>
-                <Link to="/admin/user">
+                <NavLink to="/admin/user" end className={(nav) => cx({ active: nav.isActive })}>
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faUsers} />
                         </span>
                         <p className={cx('text')}>Khách hàng</p>
                     </div>
-                </Link>
+                </NavLink>
                 <Link to="/">
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
