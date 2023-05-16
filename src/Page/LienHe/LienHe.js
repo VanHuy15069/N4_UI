@@ -73,7 +73,7 @@ function LienHe() {
             </div>
 
             <div className={cx('form-user')}>
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleRegister} style={{ width: '100%' }}>
                     <div className={cx('input-value')}>
                         <div className={cx('input-1')}>
                             <input

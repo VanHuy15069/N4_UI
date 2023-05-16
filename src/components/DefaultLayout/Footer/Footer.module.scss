@@ -10,15 +10,22 @@
     padding: 40px 0;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 .contact {
     flex: 1;
     color: #fff;
     line-height: 1.6;
     padding: 0 15px;
+
+    @media (max-width: 46.1875em) {
+        width: 50%;
+        flex: none;
+    }
 }
 .desc {
     display: flex;
+    flex-wrap: wrap;
 }
 .icon {
     padding-right: 16px;

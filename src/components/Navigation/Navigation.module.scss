@@ -1,5 +1,5 @@
 .wrapper {
-    height: 55px;
+    min-height: 5.5rem;
     background-color: #353535;
     z-index: 100;
     &.active {
@@ -25,4 +25,6 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    line-height: 5.5rem;
 }

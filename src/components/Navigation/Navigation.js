@@ -2,6 +2,7 @@ import styles from './Navigation.module.scss';
 import classNames from 'classnames/bind';
 import MenuItem from './MenuItem/MenuItem';
 import { useState, useEffect } from 'react';
+
 const cx = classNames.bind(styles);
 function Navigation() {
     const [display, setDisplay] = useState(false);

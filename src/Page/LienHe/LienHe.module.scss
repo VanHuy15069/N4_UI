@@ -9,12 +9,17 @@
         iframe {
             border: none;
             padding: 20px;
+            width: 100%;
         }
     }
 
     .about-our {
         display: flex;
         justify-content: space-between;
+        // Mobile
+        @media (max-width: 46.1875em) {
+            flex-direction: column;
+        }
 
         .item-1 {
             display: flex;
@@ -49,7 +54,7 @@
                 margin-right: 10px;
                 box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
                 input {
-                    width: 380px;
+                    width: 100%;
                     height: 40px;
                     padding: 0px 10px;
                     border: none;
@@ -58,7 +63,7 @@
                 }
 
                 textarea {
-                    width: 770px;
+                    width: 100%;
                     height: 100px;
                     padding: 10px;
                     outline: none;

@@ -2,6 +2,16 @@
     max-width: 30%;
     display: flex;
     padding: 0 15px 30px 15px;
+    /*Mobile: width < 740px  */
+    @media (max-width: 46.1875em) {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    /* Table: width >= 740px and width < 1024 */
+    @media (min-width: 46.25em) and (max-width: 63.9375em) {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
 }
 .icon {
     padding-right: 16px;

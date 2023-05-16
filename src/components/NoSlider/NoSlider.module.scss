@@ -2,4 +2,8 @@
     max-width: 1230px;
     padding: 0 15px;
     margin: 0 auto;
+    // Mobile
+    @media (max-width: 46.1875em) {
+        padding: 10px;
+    }
 }

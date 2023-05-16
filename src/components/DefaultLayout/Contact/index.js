@@ -6,7 +6,7 @@ function Contact() {
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
                 <div>
-                    <h2>ĐĂNG KÝ NHẬN THÔNG TIN</h2>
+                    <h2 className={cx('title')}>ĐĂNG KÝ NHẬN THÔNG TIN</h2>
                 </div>
                 <div className={cx('content-right')}>
                     <div className={cx('input-email')}>
