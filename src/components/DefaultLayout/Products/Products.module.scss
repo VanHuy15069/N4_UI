@@ -25,6 +25,9 @@
 }
 .link {
     color: #bbbbbb;
+    &:hover {
+        color: #333;
+    }
 }
 .container {
     display: flex;

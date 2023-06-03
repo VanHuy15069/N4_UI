@@ -7,8 +7,11 @@ import { Context } from './Provider/Provider';
 import AdminLayout from './components/AdminLayout';
 import ProfileLayout from './components/ProfileLayout/ProfileLayout';
 import ProfilePage from './Page/ProfilePage/ProfilePage';
+import NoSlider from './components/NoSlider';
+import Cart from './Page/Cart/Cart';
+import PayPage from './Page/PayPage/PayPage';
 function App() {
-    const [, setSate, , setUser, , ,] = useContext(Context);
+    const [, setSate, , setUser, ,] = useContext(Context);
     const isUser = JSON.parse(localStorage.getItem('userLogin'));
     let isAdmin = false;
     if (isUser) {
@@ -60,6 +63,28 @@ function App() {
                             <ProfileLayout>
                                 <ProfilePage />
                             </ProfileLayout>
+                        ) : (
+                            <Navigate to="/" />
+                        )
+                    }
+                />
+                <Route
+                    path="/cart"
+                    element={
+                        isUser && (
+                            <NoSlider>
+                                <Cart />
+                            </NoSlider>
+                        )
+                    }
+                />
+                <Route
+                    path="/pay"
+                    element={
+                        isUser ? (
+                            <NoSlider>
+                                <PayPage />
+                            </NoSlider>
                         ) : (
                             <Navigate to="/" />
                         )

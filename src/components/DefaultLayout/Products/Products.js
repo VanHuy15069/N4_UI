@@ -15,10 +15,6 @@ function Products({ products, category }) {
     const firstIndex = lastIndex - productsPerPage;
     const pageNumbers = [];
     const options = [...array];
-    const VND = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND',
-    });
     for (let i = 1; i <= Math.ceil(array.length / productsPerPage); i++) {
         pageNumbers.push(i);
     }
@@ -120,9 +116,9 @@ function Products({ products, category }) {
                                         id={product.id}
                                         className={cx('item')}
                                         classNameImg
-                                        src={`http://localhost:5000/src/${product.image}`}
+                                        src={product.image}
                                         title={product.title}
-                                        price={VND.format(product.price)}
+                                        price={product.price}
                                     />
                                 );
                             })

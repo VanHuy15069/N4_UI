@@ -7,7 +7,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { bannerMale, bannerFemale } from '~/Images/images';
 const cx = classNames.bind(styles);
-
 function Home() {
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -39,7 +38,7 @@ function Home() {
                     <Banner src={bannerFemale} />
                 </Link>
             </div>
-            <ListProduct products={featuredProducts} slidesPerView={4} title="Sản phẩm nổi bật" />
+            <ListProduct products={featuredProducts.slice(0, 8)} slidesPerView={4} title="Sản phẩm nổi bật" />
             <ListProduct products={newProducts.slice(0, 8)} slidesPerView={4} title="Sản phẩm mới nhất" />
             <ListProduct products={curnons.slice(0, 8)} slidesPerView={4} title="Thương hiệu Curnon " rewind />
             <ListProduct products={julius.slice(0, 8)} slidesPerView={4} title="Thương hiệu Julius" rewind />

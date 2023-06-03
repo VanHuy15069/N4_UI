@@ -6,7 +6,6 @@ import NoSlider from '~/components/NoSlider';
 import Review from '~/Page/Review/Review';
 import Blogs from '~/Page/Blogs/Blogs';
 import LienHe from '~/Page/LienHe/LienHe';
-import Cart from '~/Page/Cart/Cart';
 import Admin from '~/Page/Admin/Admin';
 import UserManagementPage from '~/Page/userManagementPage/UserManagementPage';
 import CategoryPage from '~/Page/CategoryPage/CategoryPage';
@@ -20,7 +19,6 @@ const publicRoute = [
     { path: '/review', component: Review, layout: NoSlider },
     { path: '/blogs', component: Blogs, layout: NoSlider },
     { path: '/lien-he', component: LienHe, layout: NoSlider },
-    { path: '/cart', component: Cart, layout: NoSlider },
 ];
 const adminRoute = [
     { path: '/admin', component: Admin },

@@ -53,6 +53,7 @@
     padding-bottom: 8px;
 }
 .text {
+    text-align: justify;
     margin-bottom: 20px;
     &.text-quantity {
         color: #d26e4b;
@@ -111,4 +112,12 @@
     text-transform: uppercase;
     font-weight: 700;
     cursor: pointer;
+}
+.check {
+    margin-top: 8px;
+    color: rgb(7, 174, 7);
+}
+.icon-check {
+    font-weight: bold;
+    font-size: 2rem;
 }

@@ -2,17 +2,22 @@ import classNames from 'classnames/bind';
 import styles from './InformationProduct.module.scss';
 import ListProduct from '~/components/DefaultLayout/ListProduct/ListProduct';
 import { Link, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '~/Provider/Provider';
 import axios from 'axios';
 import ImageLayout from '~/components/DefaultLayout/ImageLayout/ImageLayout';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 function InformationProduct() {
     const params = useParams();
-    const [show, setShow] = useState(false);
+    const [, , user, , , setShow] = useContext(Context);
+    const [showImg, setShowImg] = useState(false);
     const [count, setCount] = useState(1);
     const [product, setProduct] = useState({});
     const [products, setProducts] = useState([]);
     const [category, setCategory] = useState({});
+    const [check, setCheck] = useState('');
     const [link, setLink] = useState('/product/nam');
     const VND = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
@@ -76,11 +81,29 @@ function InformationProduct() {
     const sameProducts = products.filter(
         (item) => item.supplier === product.supplier && item.categoryId === category.id && item.id !== product.id,
     );
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (user) {
+            axios
+                .post('http://localhost:5000/api/v1/order/addOder', {
+                    userId: user.id,
+                    productId: params.id,
+                    quantity: count,
+                    priceTotal: product.price,
+                })
+                .then(() => {
+                    setCheck('Sản phẩm đã được thêm vào giỏ hàng của bạn!');
+                })
+                .catch((err) => console.log(err));
+        } else {
+            setShow(true);
+        }
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('wrapper-product')}>
                 <div className={cx('product-detail')}>
-                    <div className={cx('wrapper-img')} onClick={() => setShow(true)}>
+                    <div className={cx('wrapper-img')} onClick={() => setShowImg(true)}>
                         {product.image && (
                             <img className={cx('img')} src={`http://localhost:5000/src/${product.image}`} alt="" />
                         )}
@@ -124,10 +147,22 @@ function InformationProduct() {
                                         +
                                     </button>
                                 </div>
-                                <div className={cx('btn-cart')}>
-                                    <button className={cx('btn-add')}>Thêm vào giỏ</button>
-                                </div>
+                                <form onSubmit={handleSubmit}>
+                                    <div className={cx('btn-cart')}>
+                                        <button className={cx('btn-add')} type="submit">
+                                            Thêm vào giỏ
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
+                            {check && (
+                                <div className={cx('check')}>
+                                    <span className={cx('icon-check')}>
+                                        <FontAwesomeIcon icon={faCheck} />
+                                    </span>{' '}
+                                    {check}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -144,7 +179,7 @@ function InformationProduct() {
                     />
                 </div>
             </div>
-            {show && <ImageLayout src={product.image} title={product.title} onHihe={() => setShow(false)} />}
+            {showImg && <ImageLayout src={product.image} title={product.title} onHihe={() => setShowImg(false)} />}
         </div>
     );
 }

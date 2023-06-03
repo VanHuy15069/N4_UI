@@ -24,14 +24,6 @@ function Navbar() {
                         <p className={cx('text')}>Thống kê</p>
                     </div>
                 </NavLink>
-                <NavLink to="/admin/feedback" end className={(nav) => cx({ active: nav.isActive })}>
-                    <div className={cx('nav-bar_item')}>
-                        <span className={cx('icon')}>
-                            <FontAwesomeIcon icon={faMessage} />
-                        </span>
-                        <p className={cx('text')}>Phản hồi</p>
-                    </div>
-                </NavLink>
                 <div className={cx('nav-bar_title')}>Quản lý cửa hàng</div>
                 <Link to="/">
                     <div className={cx('nav-bar_item')}>
@@ -74,6 +66,14 @@ function Navbar() {
                         <p className={cx('text')}>Đơn hàng</p>
                     </div>
                 </Link>
+                <NavLink to="/admin/feedback" end className={(nav) => cx({ active: nav.isActive })}>
+                    <div className={cx('nav-bar_item')}>
+                        <span className={cx('icon')}>
+                            <FontAwesomeIcon icon={faMessage} />
+                        </span>
+                        <p className={cx('text')}>Phản hồi</p>
+                    </div>
+                </NavLink>
             </div>
         </div>
     );
