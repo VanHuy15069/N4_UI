@@ -88,6 +88,18 @@ function Header() {
         setSearchResult([]);
         inputRef.current.focus();
     };
+    const handleSearch = () => {
+        if (searchValue.length > 0) {
+            inputRef.current.blur();
+            handleHideResult();
+            navigate(`/search/${searchValue}`);
+        }
+    };
+    const handleEnter = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
     return (
         <Fragment>
             <div className={cx('wrapper')}>
@@ -121,6 +133,7 @@ function Header() {
                                     value={searchValue}
                                     onChange={handleChange}
                                     onFocus={() => setShowResult(true)}
+                                    onKeyDown={handleEnter}
                                 />
                                 {!!searchValue && !loading && (
                                     <button className={cx('clear')} onClick={handleClear}>
@@ -129,7 +142,7 @@ function Header() {
                                 )}
                                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-                                <button className={cx('btn-search')}>
+                                <button className={cx('btn-search')} onClick={handleSearch}>
                                     <span className={cx('icon-search')}>
                                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                                     </span>

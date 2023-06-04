@@ -21,6 +21,8 @@ function Home() {
     }, []);
     const featuredProducts = [...products];
     featuredProducts.sort((a, b) => b.price - a.price);
+    const popularProducts = [...products];
+    popularProducts.sort((a, b) => b.quantity - a.quantity);
     const curnons = products.filter((trademark) => trademark.supplier === 'Curnon');
     const nakzens = products.filter((trademark) => trademark.supplier === 'Nakzen');
     const rossinis = products.filter((trademark) => trademark.supplier === 'Rossini');
@@ -40,6 +42,7 @@ function Home() {
             </div>
             <ListProduct products={featuredProducts.slice(0, 8)} slidesPerView={4} title="Sản phẩm nổi bật" />
             <ListProduct products={newProducts.slice(0, 8)} slidesPerView={4} title="Sản phẩm mới nhất" />
+            <ListProduct products={popularProducts.slice(0, 8)} slidesPerView={4} title="Sản phẩm phổ biến" />
             <ListProduct products={curnons.slice(0, 8)} slidesPerView={4} title="Thương hiệu Curnon " rewind />
             <ListProduct products={julius.slice(0, 8)} slidesPerView={4} title="Thương hiệu Julius" rewind />
             <ListProduct products={nakzens.slice(0, 8)} slidesPerView={4} title="Thương hiệu Nakzen" rewind />
