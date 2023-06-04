@@ -1,0 +1,89 @@
+.box-input {
+    display: flex;
+    width: 800px;
+    margin-top: 5px;
+    .title {
+        width: 30%;
+        height: auto;
+    }
+
+    .input-val {
+        width: 70%;
+
+        input {
+            width: 60%;
+            height: 30px;
+            padding: 2px;
+            border-radius: 5px;
+            outline: none;
+            border: 0.5px solid #ddd;
+        }
+    }
+}
+
+.body {
+    margin: 10px;
+}
+
+.img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.data-table {
+    min-height: calc(100vh - 50px - 70.4px);
+    background-color: #fff;
+}
+.table {
+    border: 2px solid rgba($color: #c89979, $alpha: 0.2);
+    border-collapse: collapse;
+    width: 100%;
+    & th {
+        border: 2px solid rgba($color: #c89979, $alpha: 0.2);
+        background-color: #f8f8f8;
+        padding: 2px 0;
+    }
+    & td {
+        width: fit-content;
+        max-width: 420px;
+        padding: 6px 8px;
+        text-align: center;
+        border: 2px solid rgba($color: #c89979, $alpha: 0.2);
+    }
+    & td p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+.wrap-btn {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+
+    .btn {
+        width: 120px;
+        height: 30px;
+        border-radius: 10px;
+        outline: none;
+        background-color: rgb(70, 160, 94);
+        color: white;
+    }
+}
+
+.btn {
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 7px 24px;
+    background-color: #20c3e0;
+    &.btn-delete {
+        background-color: rgba($color: red, $alpha: 0.7);
+    }
+}
+
+.icon-btn {
+    margin-right: 4px;
+}
