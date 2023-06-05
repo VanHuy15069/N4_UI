@@ -11,7 +11,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 function InformationProduct() {
     const params = useParams();
-    const [, , user, , , setShow] = useContext(Context);
+    const [, , user, , , setShow, ,] = useContext(Context);
     const [showImg, setShowImg] = useState(false);
     const [count, setCount] = useState(1);
     const [product, setProduct] = useState({});

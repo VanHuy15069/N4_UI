@@ -2,7 +2,6 @@ import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
 import Navigation from '~/components/Navigation/Navigation';
 import Tippy from '@tippyjs/react/headless';
-import { Fragment, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -15,7 +14,7 @@ import {
     faSpinner,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState, useRef, Fragment, useEffect } from 'react';
 import { Context } from '~/Provider/Provider';
 import MenuUser from '../MenuUser/MenuUser';
 import MenuUserItem from '../MenuUser/MenuUserItem/MenuUserItem';
@@ -25,7 +24,7 @@ import axios from 'axios';
 const cx = classNames.bind(styles);
 const imageLogo = require('./LOGO.png');
 function Header() {
-    const [state, setState, user, setUser, , setShow] = useContext(Context);
+    const [state, setState, user, setUser, , setShow, , setPage] = useContext(Context);
     const [showResult, setShowResult] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
@@ -37,7 +36,7 @@ function Header() {
     };
     const handleLogout = () => {
         setState(false);
-        setUser();
+        setUser({});
         localStorage.removeItem('token');
         localStorage.removeItem('userLogin');
         navigate('/');
@@ -93,6 +92,7 @@ function Header() {
             inputRef.current.blur();
             handleHideResult();
             navigate(`/search/${searchValue}`);
+            setPage(1);
         }
     };
     const handleEnter = (e) => {

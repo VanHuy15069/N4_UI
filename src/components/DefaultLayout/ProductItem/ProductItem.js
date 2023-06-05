@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 function ProductItem({ src, title, price, className, id, classNameImg = false, onClick }) {
-    const [, , user, , , setShow] = useContext(Context);
+    const [, , user, , , setShow, ,] = useContext(Context);
     const [cart, setCart] = useState(false);
     const VND = new Intl.NumberFormat('vi-VN', {
         style: 'currency',

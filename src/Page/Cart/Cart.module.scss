@@ -29,10 +29,7 @@
 .data-table {
     padding-right: 30px;
     max-height: calc(100vh - 300px);
-    overflow-y: hidden;
-    &:hover {
-        overflow-y: overlay;
-    }
+    overflow-y: overlay;
 }
 .desc {
     font-size: 1.3rem;
@@ -54,7 +51,6 @@
         &.header-table {
             border-bottom: 3px solid #ececec;
             text-transform: uppercase;
-            // color: rgba($color: red, $alpha: 0.7);
         }
     }
     & td {

@@ -11,7 +11,7 @@ import NoSlider from './components/NoSlider';
 import Cart from './Page/Cart/Cart';
 import PayPage from './Page/PayPage/PayPage';
 function App() {
-    const [, setSate, , setUser, ,] = useContext(Context);
+    const [, setSate, , setUser, , , ,] = useContext(Context);
     const isUser = JSON.parse(localStorage.getItem('userLogin'));
     let isAdmin = false;
     if (isUser) {

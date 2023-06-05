@@ -8,12 +8,12 @@ import { faArrowLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import BoxMSG from '~/components/AdminLayout/BoxMSG/BoxMSG';
 const cx = classNames.bind(styles);
+export let carts;
 function Cart() {
     const arrCart = [];
     const [allCart, setAllCart] = useState([]);
     const [oldValue, setOldValue] = useState();
-    const [carts, setCarts] = useState([]);
-    const [, , user, , ,] = useContext(Context);
+    const [, , user, , , , ,] = useContext(Context);
     const [quantitys, setQuantitys] = useState([]);
     const [show, setShow] = useState(false);
     const [idCart, setIdCart] = useState();
@@ -23,24 +23,21 @@ function Cart() {
         currency: 'VND',
     });
     useEffect(() => {
-        if (user.id) {
-            axios
-                .get(`http://localhost:5000/api/v1/order/${user.id}`)
-                .then((res) => {
-                    const cartProducts = res.data.data.filter((element) => {
-                        return element.productInfo !== null;
-                    });
-                    const quantity = res.data.data.map((item) => {
-                        return item.quantity;
-                    });
-                    setOldValue(quantity);
-                    setQuantitys(quantity);
-                    setCarts(cartProducts);
-                    setAllCart(res.data.data);
-                })
-                .catch((err) => console.log('Loi roi'));
-        }
+        axios
+            .get(`http://localhost:5000/api/v1/order/${user.id}`)
+            .then((res) => {
+                const quantity = res.data.data.map((item) => {
+                    return item.quantity;
+                });
+                setOldValue(quantity);
+                setQuantitys(quantity);
+                setAllCart(res.data.data);
+            })
+            .catch((err) => console.log('Loi roi'));
     }, [user.id, render]);
+    carts = allCart.filter((element) => {
+        return element.productInfo !== null;
+    });
     const countUp = (index, cart) => {
         if (quantitys[index] < cart.productInfo.quantity) {
             quantitys[index]++;

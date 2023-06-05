@@ -1,14 +1,15 @@
 import classNames from 'classnames/bind';
 import styles from './SearchResultPage.module.scss';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '~/Provider/Provider';
 import axios from 'axios';
 import ProductItem from '~/components/DefaultLayout/ProductItem/ProductItem';
 const cx = classNames.bind(styles);
 function SearchResultPage() {
+    const [, , , , , , page, setPage] = useContext(Context);
     const params = useParams();
     const [products, setProducts] = useState([]);
-    const [page, setPage] = useState(1);
     const [count, setCount] = useState(0);
     const [isActive, setIsActive] = useState([true]);
     const numberPages = [];
@@ -24,6 +25,9 @@ function SearchResultPage() {
                 },
             })
             .then((res) => {
+                if (page === 1) {
+                    setIsActive([true]);
+                }
                 setProducts(res.data.title.rows);
                 setCount(res.data.title.count);
             })
@@ -34,17 +38,16 @@ function SearchResultPage() {
         active.push(false);
     }
     const handleClick = (index, e) => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
+        const value = Number(e.target.value);
+        setPage(value);
+        active[index] = true;
+        setIsActive([...active]);
         setTimeout(() => {
-            const value = e.target.value;
-            setPage(value);
-            active[0] = false;
-            active[index] = true;
-            setIsActive([...active]);
-        }, 150);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }, 100);
     };
     return (
         <div className={cx('wrapper')}>

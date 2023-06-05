@@ -9,7 +9,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 function Login() {
     const navigate = useNavigate();
-    const [, setSate, , setUser, , setShow] = useContext(Context);
+    const [, setSate, , setUser, , setShow, ,] = useContext(Context);
     const [login, setLogin] = useState(true);
     const [rePassword, setRePassword] = useState('');
     const [check, setCheck] = useState('');
