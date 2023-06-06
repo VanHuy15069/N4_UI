@@ -1,0 +1,85 @@
+.wrapper {
+    display: flex;
+
+    .blog-left {
+        width: 27%;
+        height: auto;
+    }
+
+    .blog-right {
+        border-left: 1px solid #ececec;
+        margin-top: 20px;
+        width: 100%;
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            margin: 0 15px;
+            width: 100%;
+            border: 1px solid #dddddd;
+            padding: 10px;
+
+            .header {
+                text-transform: uppercase;
+                color: #4f4f4f;
+                font-weight: 600;
+                &:hover {
+                    color: black;
+                }
+            }
+
+            .title {
+                margin: 10px 0;
+                border-bottom: 2px dashed #dddddd;
+            }
+
+            .thumbnail {
+                margin-top: 20px;
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .contentHTML {
+                padding: 15px;
+            }
+
+            footer {
+                display: flex;
+                height: 30px;
+                .social-network {
+                    width: 70%;
+                    display: flex;
+
+                    .img-s {
+                        width: 100px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 35px;
+
+                        color: #fff;
+                        padding: 5px 12px 6px;
+                        text-align: center;
+                        cursor: pointer;
+                        margin-right: 5px;
+                        border-radius: 4px;
+                        p {
+                            margin-left: 3px;
+                        }
+                        &:hover {
+                            opacity: 0.9;
+                        }
+                    }
+                }
+
+                .date {
+                    width: 30%;
+                    text-align: right;
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}

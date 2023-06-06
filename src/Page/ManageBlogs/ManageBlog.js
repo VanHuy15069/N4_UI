@@ -7,7 +7,7 @@ import BoxMSG from '~/components/AdminLayout/BoxMSG/BoxMSG';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 // import style manually
 import 'react-markdown-editor-lite/lib/index.css';
 import axios from 'axios';
@@ -16,7 +16,6 @@ const cx = classNames.bind(styles);
 
 export default function ManageBlog() {
     let [show, setShow] = useState(false);
-    //let [showUpdate, setShowUpdate] = useState(false);
     let [check, setCheck] = useState('');
     let [markdown, setMarkdown] = useState({
         contentMarkDown: '',
@@ -35,7 +34,6 @@ export default function ManageBlog() {
         contentHTMLOld: '',
         contentMarkDownOld: '',
     });
-    //let { idOld, contentHTMLOld, contentMarkDownOld, titleOld } = blogs;
     let [length, setLength] = useState(0);
     let [showDelete, setShowDelete] = useState(false);
 
@@ -81,7 +79,7 @@ export default function ManageBlog() {
         if (!spaceValue.startsWith(' ')) {
             if (show) {
                 setValue({ ...value, [e.target.name]: e.target.value });
-            }
+            } 
         }
     };
 
@@ -124,18 +122,6 @@ export default function ManageBlog() {
         }
     };
 
-    // let handleShowUpdate = (blog) => {
-    //     setShowUpdate(true);
-    //     setUploadImg(`https://localhost:5000/src/${blog.img}`);
-    //     setBlogs({
-    //         ...blogs,
-    //         contentHTMLOld: blog.contentHTML,
-    //         contentMarkDownOld: blog.contentMarkDown,
-    //         titleOld: blog.title,
-    //         idOld: blog.id,
-    //     });
-    // };
-
     let handleDelete = (blog) => {
         setShowDelete(true);
         setBlogs({
@@ -144,7 +130,6 @@ export default function ManageBlog() {
             contentHTMLOld: blog.contentHTML,
             contentMarkDownOld: blog.contentMarkDown,
         });
-        console.log(blog);
     };
 
     let handleDeleteBlog = () => {
@@ -157,6 +142,10 @@ export default function ManageBlog() {
             .catch((err) => console.log(err));
         console.log('ID: ' + blogs.id);
     };
+
+    
+
+    
     return (
         <div className={cx('wrapper')} type="submit">
             <Wrapper header="Quản lý bài viết" icon={faBlogger} control onCLick={handleShow}></Wrapper>
@@ -176,14 +165,7 @@ export default function ManageBlog() {
                                         <td>{blog.id}</td>
                                         <td>{blog.title}</td>
                                         <td>{formatter.format(Date.parse(blog.createdAt))}</td>
-                                        <td>
-                                            <button className={cx('btn')}>
-                                                <span className={cx('icon-btn')}>
-                                                    <FontAwesomeIcon icon={faPenToSquare} />
-                                                </span>
-                                                Sửa
-                                            </button>
-                                        </td>
+                                        
                                         <td>
                                             <button
                                                 onClick={() => handleDelete(blog)}
@@ -231,7 +213,7 @@ export default function ManageBlog() {
 
                         <div className={cx('content')}>
                             <MdEditor
-                                style={{ height: '500px' }}
+                                style={{ height: '500px', width: '1200px' }}
                                 renderHTML={(text) => mdParser.render(text)}
                                 onChange={handleEditorChange}
                             />
@@ -250,6 +232,7 @@ export default function ManageBlog() {
                     Xác nhận xoá bài viết <span style={{ fontWeight: '700' }}>{blogs.titleOld}</span>
                 </BoxMSG>
             )}
+            
         </div>
     );
 }

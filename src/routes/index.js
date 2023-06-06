@@ -13,6 +13,7 @@ import CategoryPage from '~/Page/CategoryPage/CategoryPage';
 import ProductManagement from '~/Page/ProductManagement/ProductManagement';
 import Feedback from '~/Page/Feedback/Feedback';
 import ManageBlog from '~/Page/ManageBlogs/ManageBlog';
+import InformationBlog from '~/Page/InformationBlog/InformationBlog';
 
 const publicRoute = [
     { path: '/', component: Home },
@@ -23,6 +24,7 @@ const publicRoute = [
     { path: '/blogs', component: Blogs, layout: NoSlider },
     { path: '/lien-he', component: LienHe, layout: NoSlider },
     { path: '/cart', component: Cart, layout: NoSlider },
+    { path: '/informationBlog/:id', component: InformationBlog, layout: NoSlider },
 ];
 const adminRoute = [
     { path: '/admin', component: Admin },
