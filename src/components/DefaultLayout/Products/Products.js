@@ -10,58 +10,70 @@ function Products({ products, category }) {
     const [array, setArray] = useState([]);
     const [tradeMark, setTradeMark] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
+    const [isActive, setIsActive] = useState([true]);
     const productsPerPage = 8;
     const lastIndex = currentPage * productsPerPage;
     const firstIndex = lastIndex - productsPerPage;
+    const active = [];
     const pageNumbers = [];
     const options = [...array];
-    const VND = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND',
-    });
     for (let i = 1; i <= Math.ceil(array.length / productsPerPage); i++) {
         pageNumbers.push(i);
+        active.push(false);
     }
     useEffect(() => {
         setArray([...products]);
     }, [products]);
-    const handleClick = (e) => {
+    const handleClick = (index, e) => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
         setCurrentPage(e.target.value);
+        active[0] = false;
+        active[index] = true;
+        setIsActive([...active]);
     };
     const getAll = () => {
         setArray([...products]);
         setValue(1);
         setTradeMark('');
+        setCurrentPage(1);
     };
     const getNakzen = () => {
         const nakzens = products.filter((trademark) => trademark.supplier === 'Nakzen');
         setArray(nakzens);
         setTradeMark('Nakzen');
         setValue(1);
+        setCurrentPage(1);
     };
     const getRossini = () => {
         const rossinies = products.filter((tradeMark) => tradeMark.supplier === 'Rossini');
         setArray(rossinies);
         setTradeMark('Rossini');
         setValue(1);
+        setCurrentPage(1);
     };
     const getJulius = () => {
         const getJulius = products.filter((tradeMark) => tradeMark.supplier === 'Julius');
         setArray(getJulius);
         setTradeMark('Julius');
         setValue(1);
+        setCurrentPage(1);
     };
     const getCurnon = () => {
         const curnons = products.filter((tradeMark) => tradeMark.supplier === 'Curnon');
         setArray(curnons);
         setTradeMark('Curnon');
         setValue(1);
+        setCurrentPage(1);
     };
     const getRolex = () => {
         const rolexs = products.filter((tradeMark) => tradeMark.supplier === 'Rolex');
         setArray(rolexs);
         setTradeMark('Rolex');
         setValue(1);
+        setCurrentPage(1);
     };
     const handleChange = (e) => {
         if (options.length > 0) {
@@ -120,9 +132,9 @@ function Products({ products, category }) {
                                         id={product.id}
                                         className={cx('item')}
                                         classNameImg
-                                        src={`http://localhost:5000/src/${product.image}`}
+                                        src={product.image}
                                         title={product.title}
-                                        price={VND.format(product.price)}
+                                        price={product.price}
                                     />
                                 );
                             })
@@ -138,11 +150,11 @@ function Products({ products, category }) {
                             {pageNumbers.map((num, index) => {
                                 return pageNumbers.length > 1 ? (
                                     <input
-                                        className={cx('input')}
+                                        className={cx('input', { active: isActive[index] })}
                                         key={index}
                                         type="button"
                                         value={num}
-                                        onClick={handleClick}
+                                        onClick={(e) => handleClick(index, e)}
                                     />
                                 ) : (
                                     ''

@@ -3,21 +3,22 @@ import styles from './LienHe.module.scss';
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLocationDot, faSquarePhone } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
 function LienHe() {
     const [check, setCheck] = useState('');
     const [data, setData] = useState({
-        username: '',
+        fullName: '',
         email: '',
         phoneNumber: '',
         address: '',
-        message: '',
+        note: '',
     });
-
-    const { username, email, phoneNumber, address, message } = data;
-
+    const [success, setSuccess] = useState(false);
+    const { fullName, email, phoneNumber, address, note } = data;
+    const classname = cx('error', { success });
     let handleChange = (e) => {
         let spaceValue = e.target.value;
         if (!spaceValue.startsWith(' ')) {
@@ -26,18 +27,35 @@ function LienHe() {
     };
     let handleRegister = (e) => {
         e.preventDefault();
-        if (!data.username || !data.email || !data.address || !data.phoneNumber || !data.message) {
-            setCheck('Vui lòng nhập đủ thông tin');
+        if (!data.fullName || !data.email || !data.address || !data.phoneNumber || !data.note) {
+            setCheck('Vui lòng nhập đầy đủ thông tin!');
+            setSuccess(false);
+        } else {
+            axios
+                .post('http://localhost:5000/api/v1/contact/addContact', data)
+                .then(() => {
+                    setData({
+                        fullName: '',
+                        email: '',
+                        phoneNumber: '',
+                        address: '',
+                        note: '',
+                    });
+                    setCheck('Gửi thông tin liên hệ thành công!');
+                    setSuccess(true);
+                })
+                .catch((err) => console.log(err));
         }
     };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('maps')}>
                 <iframe
                     title="map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4737884515184!2d105.7325318752119!3d21.05373098060188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345457e292d5bf%3A0x20ac91c94d74439a!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2hp4buHcCBIw6AgTuG7mWk!5e0!3m2!1svi!2s!4v1683199430147!5m2!1svi!2s"
-                    width="1200"
-                    height="600"
+                    width="100%"
+                    height="100%"
                     referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
             </div>
@@ -84,8 +102,8 @@ function LienHe() {
                                 type="text"
                                 placeholder="Họ tên"
                                 onChange={handleChange}
-                                name="username"
-                                value={username}
+                                name="fullName"
+                                value={fullName}
                             />
                         </div>
                         <div className={cx('input-1')}>
@@ -119,8 +137,8 @@ function LienHe() {
                             <textarea
                                 placeholder="Lời nhắn"
                                 onChange={handleChange}
-                                name="message"
-                                value={message}
+                                name="note"
+                                value={note}
                             ></textarea>
                         </div>
                     </div>
@@ -130,7 +148,7 @@ function LienHe() {
                     </div>
                 </form>
                 {check && (
-                    <div className={cx('error')}>
+                    <div className={classname}>
                         <p className={cx('err-desc')}>{check}</p>
                     </div>
                 )}

@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 function ProfileLayout({ children }) {
     const navigate = useNavigate();
     const [userLocal, setUserLoacal] = useState(JSON.parse(localStorage.getItem('userLogin')));
-    const [, , user, setUser, ,] = useContext(Context);
+    const [, , user, setUser, , , ,] = useContext(Context);
     const [show, setShow] = useState(false);
     const [data, setData] = useState({
         firstName: userLocal.firstName,

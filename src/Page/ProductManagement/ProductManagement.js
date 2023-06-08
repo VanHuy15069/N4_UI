@@ -146,6 +146,12 @@ function ProductManagement() {
             setCheck('Bạn cần nhập đầy đủ thông tin sản phẩm');
         } else if (!image) {
             setCheck('Thiếu ảnh sản phẩm');
+        } else if (isNaN(value.price)) {
+            setCheck('Giá bán sản phẩm không hợp lệ!');
+        } else if (isNaN(value.weight)) {
+            setCheck('Trọng lượng sản phẩm không hợp lệ!');
+        } else if (isNaN(value.quantity)) {
+            setCheck('Số lượng sản phẩm không hợp lệ!');
         } else {
             const formData = new FormData();
             formData.append('image', image);
@@ -162,6 +168,7 @@ function ProductManagement() {
                     setShow(false);
                     setLength(products.length);
                     setImage();
+                    setUploadImg();
                     setValue({
                         title: '',
                         categoryId: '',
@@ -193,6 +200,12 @@ function ProductManagement() {
             setCheck('Bạn cần nhập đầy đủ thông tin');
         } else if (!image) {
             setCheck('Thiếu ảnh ảnh sản phẩm');
+        } else if (isNaN(product.priceOld)) {
+            setCheck('Giá bán sản phẩm không hợp lệ!');
+        } else if (isNaN(product.weightOld)) {
+            setCheck('Trọng lượng sản phẩm không hợp lệ!');
+        } else if (isNaN(product.quantityOld)) {
+            setCheck('Số lượng sản phẩm không hợp lệ!');
         } else {
             const formData = new FormData();
             formData.append('image', image);
@@ -218,7 +231,6 @@ function ProductManagement() {
         axios
             .delete(`http://localhost:5000/api/v1/product/${product.id}`)
             .then((res) => {
-                console.log(res);
                 setShowDelete(false);
                 setLength(products.length);
             })
@@ -258,7 +270,7 @@ function ProductManagement() {
                                             <td>{VND.format(product.price)}</td>
                                             <td>
                                                 <button
-                                                    className={cx('btn')}
+                                                    className={cx('btn', 'btn-add_product')}
                                                     // onClick={() => handleAddQuantity(product)}
                                                 >
                                                     <span className={cx('icon-btn')}>
@@ -300,6 +312,8 @@ function ProductManagement() {
                         onClickHide={() => {
                             setShow(false);
                             setCheck('');
+                            setUploadImg();
+                            setImage();
                         }}
                         control
                         type="submit"
@@ -322,13 +336,16 @@ function ProductManagement() {
                                 </tr>
                                 <tr>
                                     <td>Hình ảnh</td>
-                                    <td>
+                                    <td className={cx('row-img')}>
                                         <input
                                             style={{ marginLeft: '8px' }}
                                             type="file"
                                             name="image"
                                             onChange={handleChangeImage}
                                         />
+                                        <div className={cx('wrapper-img')}>
+                                            <img className={cx('img-upload')} src={uploadImg} alt="" />
+                                        </div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -416,6 +433,8 @@ function ProductManagement() {
                         onClickHide={() => {
                             setShowForm(false);
                             setCheck('');
+                            setUploadImg();
+                            setImage();
                         }}
                         control
                         type="submit"
@@ -445,9 +464,11 @@ function ProductManagement() {
                                             name="image"
                                             onChange={handleChangeImage}
                                         />
-                                        <div className={cx('wrapper-img')}>
-                                            <img className={cx('img-upload')} src={uploadImg} alt="" />
-                                        </div>
+                                        {uploadImg && (
+                                            <div className={cx('wrapper-img')}>
+                                                <img className={cx('img-upload')} src={uploadImg} alt="" />
+                                            </div>
+                                        )}
                                     </td>
                                 </tr>
                                 <tr>

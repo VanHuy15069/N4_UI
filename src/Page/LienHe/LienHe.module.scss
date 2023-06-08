@@ -4,6 +4,7 @@
     margin-bottom: 60px;
 
     .maps {
+        height: 600px;
         margin-top: 60px;
         iframe {
             border: none;
@@ -21,10 +22,8 @@
             .item-logo {
                 height: 50px;
                 width: 50px;
-                
             }
         }
-        
     }
 
     .form-user {
@@ -90,7 +89,10 @@
             }
         }
         .error {
-            color: rgb(255, 0, 0);
+            color: rgba($color: red, $alpha: 0.7);
+            &.success {
+                color: rgba($color: rgb(15, 205, 15), $alpha: 0.7);
+            }
         }
     }
 }

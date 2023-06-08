@@ -16,10 +16,6 @@ function ListProduct({
     onClick,
     mTopNull = false,
 }) {
-    const VND = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND',
-    });
     const classname = cx('products', { mTopNull });
     return (
         <div className={classname}>
@@ -46,9 +42,9 @@ function ListProduct({
                                 <SwiperSlide key={index}>
                                     <ProductItem
                                         id={product.id}
-                                        src={`http://localhost:5000/src/${product.image}`}
+                                        src={product.image}
                                         title={product.title}
-                                        price={VND.format(product.price)}
+                                        price={product.price}
                                         classNameImg={classNameImg}
                                         onClick={onClick}
                                     />

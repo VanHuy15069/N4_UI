@@ -9,7 +9,7 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 function Login() {
     const navigate = useNavigate();
-    const [, setSate, , setUser, , setShow] = useContext(Context);
+    const [, setSate, , setUser, , setShow, ,] = useContext(Context);
     const [login, setLogin] = useState(true);
     const [rePassword, setRePassword] = useState('');
     const [check, setCheck] = useState('');
@@ -54,10 +54,14 @@ function Login() {
             !data.password
         ) {
             setCheck('Bạn nhập thiếu thông tin, vui lòng nhập thêm thông tin!');
-        } else if (data.password.length < 8) {
-            setCheck('Mật khẩu cần có ít nhất 8 kí tự!');
+        } else if (data.username.search(' ') > -1) {
+            setCheck('Tên đăng nhập không hợp lệ!');
+        } else if (isNaN(data.phoneNumber)) {
+            setCheck('Bạn nhập sai số điện thoại!');
+        } else if (data.password.length < 8 || data.password.search(' ') > -1) {
+            setCheck('Mật khẩu không hợp lệ!');
         } else if (data.password !== rePassword) {
-            setCheck('mật khẩu xác nhận bạn nhập không khớp!');
+            setCheck('Mật khẩu xác nhận bạn nhập không khớp!');
         } else {
             axios
                 .post('http://localhost:5000/api/v1/auth/register', data)
@@ -92,10 +96,8 @@ function Login() {
                         localStorage.setItem('token', res.data.token);
                         localStorage.setItem('userLogin', myUser);
                         if (res.data.response.admin) {
-                            console.log(res.data.response.admin);
                             navigate('/admin');
                         } else {
-                            console.log(res.data.response.admin);
                             navigate('/');
                         }
                         window.location.reload();
