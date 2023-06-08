@@ -8,6 +8,7 @@ import BoxMSG from '~/components/AdminLayout/BoxMSG/BoxMSG';
 import axios from 'axios';
 const cx = classNames.bind(styles);
 function CategoryPage() {
+    const [check, setCheck] = useState('');
     const [name, setName] = useState('');
     const [show, setShow] = useState(false);
     const [length, setLength] = useState(0);
@@ -24,6 +25,7 @@ function CategoryPage() {
     }, [length]);
     const handleHide = () => {
         setShow(false);
+        setCheck('');
     };
     const hanldeShow = () => {
         setShow(true);
@@ -33,16 +35,20 @@ function CategoryPage() {
     };
     const hanleAddname = (e) => {
         e.preventDefault();
-        axios
-            .post('http://localhost:5000/api/v1/category/addCategory', { name: name })
-            .then((res) => {
-                setCategory(res.data.cate.cate);
-                setLength(category.length);
-                setShow(false);
-            })
-            .catch((err) => {
-                alert('Không thể kết nối đến server');
-            });
+        if (!name) {
+            setCheck('Không được để trống thông tin!');
+        } else {
+            axios
+                .post('http://localhost:5000/api/v1/category/addCategory', { name: name })
+                .then((res) => {
+                    setCategory(res.data.cate.cate);
+                    setLength(category.length);
+                    setShow(false);
+                })
+                .catch((err) => {
+                    alert('Không thể kết nối đến server');
+                });
+        }
     };
     return (
         <div className={cx('wrapper')}>
@@ -84,7 +90,7 @@ function CategoryPage() {
                 </div>
             </Wrapper>
             {show && (
-                <BoxMSG onClickHide={handleHide}>
+                <BoxMSG onClickHide={handleHide} messageErr={check}>
                     <form onSubmit={hanleAddname}>
                         <div>Tên loại sản phẩm:</div>
                         <input

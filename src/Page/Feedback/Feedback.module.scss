@@ -23,6 +23,13 @@
 .over {
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 360px;
+    min-width: 360px;
+}
+.action {
+    max-width: 140px;
+    min-width: 140px;
 }
 .btn {
     padding: 10px 28px;
@@ -35,6 +42,9 @@
         background-color: #20c3e0;
     }
     &.btn-add {
+        background-color: rgb(13, 227, 67);
+    }
+    &.btn-detail {
         background-color: rgb(13, 227, 67);
     }
 }

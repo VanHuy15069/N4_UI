@@ -32,7 +32,7 @@ function Slider() {
                 <SwiperSlide>
                     <img
                         className={cx('slider-img')}
-                        src="https://donghouytin.vn/wp-content/uploads/2022/03/dong-ho-uy-tin-banner-1.jpg"
+                        src="https://nakzen.vn/thumbs/1600x1143x2/upload/product/aaa1357-9595.jpg"
                         alt=""
                     />
                 </SwiperSlide>

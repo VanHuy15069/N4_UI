@@ -6,14 +6,13 @@ import NoSlider from '~/components/NoSlider';
 import Review from '~/Page/Review/Review';
 import Blogs from '~/Page/Blogs/Blogs';
 import LienHe from '~/Page/LienHe/LienHe';
-import Cart from '~/Page/Cart/Cart';
 import Admin from '~/Page/Admin/Admin';
 import UserManagementPage from '~/Page/userManagementPage/UserManagementPage';
 import CategoryPage from '~/Page/CategoryPage/CategoryPage';
 import ProductManagement from '~/Page/ProductManagement/ProductManagement';
 import Feedback from '~/Page/Feedback/Feedback';
 import ManageBlog from '~/Page/ManageBlogs/ManageBlog';
-
+import SearchResultPage from '~/Page/SearchResultPage/SearchResultPage';
 const publicRoute = [
     { path: '/', component: Home },
     { path: '/product/nam', component: Product, layout: NoSlider },
@@ -22,7 +21,7 @@ const publicRoute = [
     { path: '/review', component: Review, layout: NoSlider },
     { path: '/blogs', component: Blogs, layout: NoSlider },
     { path: '/lien-he', component: LienHe, layout: NoSlider },
-    { path: '/cart', component: Cart, layout: NoSlider },
+    { path: '/search/:keyword', component: SearchResultPage, layout: NoSlider },
 ];
 const adminRoute = [
     { path: '/admin', component: Admin },
