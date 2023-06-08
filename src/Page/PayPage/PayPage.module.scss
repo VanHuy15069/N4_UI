@@ -1,0 +1,118 @@
+.wrapper {
+    padding: 30px 0;
+    min-height: calc(100vh - 285px);
+}
+.container {
+    display: flex;
+}
+.information {
+    width: 60%;
+    padding-right: 15px;
+}
+.header {
+    margin-bottom: 10px;
+}
+.bill {
+    flex: 1;
+    padding-left: 15px;
+}
+.box {
+    margin-bottom: 8px;
+}
+.input {
+    width: 100%;
+    line-height: 1.6;
+    height: 38px;
+    border: 1px solid #ddd;
+    padding: 0 12px;
+    margin-bottom: 12px;
+    color: #333;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    outline: none;
+    &:hover {
+        box-shadow: none;
+    }
+    &:focus {
+        box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+    }
+    &.input-are {
+        height: auto;
+        resize: none;
+    }
+}
+.text {
+    color: #333;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.data-table {
+    border: 2px solid var(--primary);
+    padding: 15px 30px 30px 30px;
+    & h3 {
+        padding: 10px 0;
+    }
+}
+.primary {
+    color: var(--primary);
+    font-weight: 600;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #666;
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    & tr {
+        border-bottom: 1px solid #ececec;
+        &.boder-bold {
+            border-bottom: 3px solid #ececec;
+        }
+    }
+    & th {
+        text-align: left;
+        &:nth-child(2n) {
+            text-align: right;
+        }
+    }
+    & td {
+        padding: 8px 8px 8px 0;
+        text-align: left;
+        &:nth-child(2n) {
+            text-align: right;
+            padding: 8px 0px 8px 8px;
+        }
+        &.bold {
+            font-weight: 600;
+            color: #333;
+            &.not-back {
+                color: #666;
+            }
+        }
+    }
+}
+.product-item {
+    display: flex;
+    align-items: center;
+}
+.quantity {
+    margin-left: 8px;
+}
+.product-title {
+    min-width: 140px;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.btn-pay {
+    border: none;
+    color: #fff;
+    font-size: 1.6rem;
+    line-height: 4rem;
+    padding: 0 2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #d26e4b;
+    margin-top: 20px;
+}
