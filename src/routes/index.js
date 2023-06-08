@@ -12,7 +12,10 @@ import CategoryPage from '~/Page/CategoryPage/CategoryPage';
 import ProductManagement from '~/Page/ProductManagement/ProductManagement';
 import Feedback from '~/Page/Feedback/Feedback';
 import ManageBlog from '~/Page/ManageBlogs/ManageBlog';
+import InformationBlog from '~/Page/InformationBlog/InformationBlog';
+
 import SearchResultPage from '~/Page/SearchResultPage/SearchResultPage';
+
 const publicRoute = [
     { path: '/', component: Home },
     { path: '/product/nam', component: Product, layout: NoSlider },
@@ -21,6 +24,8 @@ const publicRoute = [
     { path: '/review', component: Review, layout: NoSlider },
     { path: '/blogs', component: Blogs, layout: NoSlider },
     { path: '/lien-he', component: LienHe, layout: NoSlider },
+    { path: '/cart', component: Cart, layout: NoSlider },
+    { path: '/informationBlog/:id', component: InformationBlog, layout: NoSlider },
     { path: '/search/:keyword', component: SearchResultPage, layout: NoSlider },
 ];
 const adminRoute = [

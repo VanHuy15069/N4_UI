@@ -1,0 +1,74 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+
+    .content {
+        display: flex;
+        border: 1px solid #dddddd;
+        margin: 10px 8px;
+
+        .blog-left {
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+
+            .middle {
+                padding: 10px 20px 0px;
+                h3 {
+                    text-transform: uppercase;
+                }
+            }
+
+            .bottom {
+                width: 100%;
+                padding: 20px;
+                height: auto;
+
+                .bottom-wrapper-c {
+                    border: 0.5px solid #dddddd;
+                    background-color: #fcfcfc;
+                    display: flex;
+                    flex-direction: column;
+
+                    .bottom-wrapper {
+                        padding: 7px;
+                        height: 100%;
+
+                        .bottom-content {
+                            display: flex;
+                            font-size: 14px;
+                            border-bottom: 0.5px dashed black;
+                            padding: 10px 0;
+
+                            .img {
+                                img {
+                                    border-radius: 50px;
+                                    height: 40px;
+                                    width: 40px;
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                    background-position: center;
+                                    margin-right: 10px;
+                                }
+                            }
+
+                            .title {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 2;
+
+                                &:hover {
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
