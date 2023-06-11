@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BoxMSG from '~/components/AdminLayout/BoxMSG/BoxMSG';
 const cx = classNames.bind(styles);
 function ProductManagement() {
-    const [length, setLength] = useState(0);
     const [isUpdate, setIsUpdate] = useState(false);
     const [value, setValue] = useState({
         title: '',
@@ -58,7 +57,7 @@ function ProductManagement() {
             .catch((err) => {
                 console.log(err);
             });
-    }, [length, isUpdate]);
+    }, [isUpdate]);
     useEffect(() => {
         axios
             .get('http://localhost:5000/api/v1/category/getCategory')
@@ -166,7 +165,7 @@ function ProductManagement() {
                 .post('http://localhost:5000/api/v1/product/addProduct', formData)
                 .then(() => {
                     setShow(false);
-                    setLength(products.length);
+                    setIsUpdate(!isUpdate);
                     setImage();
                     setUploadImg();
                     setValue({
@@ -232,7 +231,7 @@ function ProductManagement() {
             .delete(`http://localhost:5000/api/v1/product/${product.id}`)
             .then((res) => {
                 setShowDelete(false);
-                setLength(products.length);
+                setIsUpdate(!isUpdate);
             })
             .catch((err) => console.log(err));
     };

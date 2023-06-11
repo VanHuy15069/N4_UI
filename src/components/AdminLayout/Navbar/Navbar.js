@@ -10,7 +10,7 @@ import {
     faUsers,
     faMessage,
 } from '@fortawesome/free-solid-svg-icons';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 const cx = classNames.bind(styles);
 function Navbar() {
     return (
@@ -58,14 +58,14 @@ function Navbar() {
                         <p className={cx('text')}>Khách hàng</p>
                     </div>
                 </NavLink>
-                <Link to="/">
+                <NavLink to="/admin/order" end className={(nav) => cx({ active: nav.isActive })}>
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>
                             <FontAwesomeIcon icon={faCartShopping} />
                         </span>
                         <p className={cx('text')}>Đơn hàng</p>
                     </div>
-                </Link>
+                </NavLink>
                 <NavLink to="/admin/feedback" end className={(nav) => cx({ active: nav.isActive })}>
                     <div className={cx('nav-bar_item')}>
                         <span className={cx('icon')}>

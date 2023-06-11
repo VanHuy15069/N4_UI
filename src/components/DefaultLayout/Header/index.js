@@ -169,7 +169,9 @@ function Header() {
                                         <Link to="/account">
                                             <MenuUserItem icon={faUser} content={'Tài khoản'} />
                                         </Link>
-                                        <MenuUserItem icon={faCartShopping} content={'Đơn hàng'} />
+                                        <Link to="/account">
+                                            <MenuUserItem icon={faCartShopping} content={'Đơn hàng'} />
+                                        </Link>
                                         {user.admin && (
                                             <Link to="/admin">
                                                 <MenuUserItem icon={faChalkboardUser} content={'Quản lý'} />

@@ -26,7 +26,6 @@ function ProductItem({ src, title, price, className, id, classNameImg = false, o
                     priceTotal: price,
                 })
                 .then((res) => {
-                    console.log(res);
                     if (id === res.data.order[0].productId) {
                         setCart(true);
                     }

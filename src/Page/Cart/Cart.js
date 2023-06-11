@@ -26,17 +26,18 @@ function Cart() {
         axios
             .get(`http://localhost:5000/api/v1/order/${user.id}`)
             .then((res) => {
-                const quantity = res.data.data.map((item) => {
-                    return item.quantity;
+                const quantityNotNull = res.data.data.filter((item) => {
+                    return item.productInfo !== null && item.deleted === false;
                 });
+                const quantity = quantityNotNull.map((item) => item.quantity);
                 setOldValue(quantity);
                 setQuantitys(quantity);
                 setAllCart(res.data.data);
             })
             .catch((err) => console.log('Loi roi'));
     }, [user.id, render]);
-    carts = allCart.filter((element) => {
-        return element.productInfo !== null;
+    const carts = allCart.filter((element) => {
+        return element.productInfo !== null && element.deleted === false;
     });
     const countUp = (index, cart) => {
         if (quantitys[index] < cart.productInfo.quantity) {
@@ -95,6 +96,22 @@ function Cart() {
     const priceSum = carts.reduce((sum, cart) => {
         return sum + cart.quantity * cart.productInfo.price;
     }, 0);
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        carts.forEach((cart, index) => {
+            if (cart.quantity !== quantitys[index]) {
+                axios
+                    .put(`http://localhost:5000/api/v1/order/${cart.id}`, {
+                        quantity: quantitys[index],
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                        setRender(!render);
+                    })
+                    .catch((err) => console.log(err));
+            }
+        });
+    };
     return (
         <div className={cx('wrapper')}>
             {carts.length > 0 ? (
@@ -170,17 +187,21 @@ function Cart() {
                                 </tbody>
                             </table>
                         </div>
-                        <div className={cx('button')}>
-                            <Link to="/">
-                                <button className={cx('back')}>
-                                    <span className={cx('icon-back')}>
-                                        <FontAwesomeIcon icon={faArrowLeft} />
-                                    </span>
-                                    <span>Tiếp tuc xem sản phẩm</span>
+                        <form onSubmit={handleUpdate}>
+                            <div className={cx('button')}>
+                                <Link to="/">
+                                    <button className={cx('back')}>
+                                        <span className={cx('icon-back')}>
+                                            <FontAwesomeIcon icon={faArrowLeft} />
+                                        </span>
+                                        <span>Tiếp tuc xem sản phẩm</span>
+                                    </button>
+                                </Link>
+                                <button className={cx('btn-update')} type="submit">
+                                    Cập nhật giỏ hàng
                                 </button>
-                            </Link>
-                            <button className={cx('btn-update')}>Cập nhật giỏ hàng</button>
-                        </div>
+                            </div>
+                        </form>
                     </div>
                     <div className={cx('order')}>
                         <table className={cx('table', 'table-order')}>

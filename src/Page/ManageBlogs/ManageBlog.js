@@ -7,7 +7,7 @@ import BoxMSG from '~/components/AdminLayout/BoxMSG/BoxMSG';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 // import style manually
 import 'react-markdown-editor-lite/lib/index.css';
 import axios from 'axios';
@@ -16,7 +16,6 @@ const cx = classNames.bind(styles);
 
 export default function ManageBlog() {
     let [show, setShow] = useState(false);
-    //let [showUpdate, setShowUpdate] = useState(false);
     let [check, setCheck] = useState('');
     let [markdown, setMarkdown] = useState({
         contentMarkDown: '',
@@ -35,8 +34,7 @@ export default function ManageBlog() {
         contentHTMLOld: '',
         contentMarkDownOld: '',
     });
-    //let { idOld, contentHTMLOld, contentMarkDownOld, titleOld } = blogs;
-    let [length, setLength] = useState(0);
+    let [isRender, setIsRender] = useState(false);
     let [showDelete, setShowDelete] = useState(false);
 
     let handleOnChangeImg = (e) => {
@@ -63,7 +61,7 @@ export default function ManageBlog() {
             .catch((err) => {
                 console.log(err);
             });
-    }, [length]);
+    }, [isRender]);
 
     const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -116,25 +114,13 @@ export default function ManageBlog() {
                         contentMarkDown: '',
                     });
                     setCheck('');
-                    setLength(blog.length);
+                    setIsRender(!isRender);
                 })
                 .catch(() => {
                     alert('Lỗi server');
                 });
         }
     };
-
-    // let handleShowUpdate = (blog) => {
-    //     setShowUpdate(true);
-    //     setUploadImg(`https://localhost:5000/src/${blog.img}`);
-    //     setBlogs({
-    //         ...blogs,
-    //         contentHTMLOld: blog.contentHTML,
-    //         contentMarkDownOld: blog.contentMarkDown,
-    //         titleOld: blog.title,
-    //         idOld: blog.id,
-    //     });
-    // };
 
     let handleDelete = (blog) => {
         setShowDelete(true);
@@ -144,7 +130,6 @@ export default function ManageBlog() {
             contentHTMLOld: blog.contentHTML,
             contentMarkDownOld: blog.contentMarkDown,
         });
-        console.log(blog);
     };
 
     let handleDeleteBlog = () => {
@@ -152,11 +137,12 @@ export default function ManageBlog() {
             .delete(`http://localhost:5000/api/v1/blog/${blogs.id}`)
             .then((res) => {
                 setShowDelete(false);
-                setLength(blog.length);
+                setIsRender(!isRender);
             })
             .catch((err) => console.log(err));
         console.log('ID: ' + blogs.id);
     };
+
     return (
         <div className={cx('wrapper')} type="submit">
             <Wrapper header="Quản lý bài viết" icon={faBlogger} control onCLick={handleShow}></Wrapper>
@@ -176,14 +162,7 @@ export default function ManageBlog() {
                                         <td>{blog.id}</td>
                                         <td>{blog.title}</td>
                                         <td>{formatter.format(Date.parse(blog.createdAt))}</td>
-                                        <td>
-                                            <button className={cx('btn')}>
-                                                <span className={cx('icon-btn')}>
-                                                    <FontAwesomeIcon icon={faPenToSquare} />
-                                                </span>
-                                                Sửa
-                                            </button>
-                                        </td>
+
                                         <td>
                                             <button
                                                 onClick={() => handleDelete(blog)}
@@ -231,7 +210,7 @@ export default function ManageBlog() {
 
                         <div className={cx('content')}>
                             <MdEditor
-                                style={{ height: '500px' }}
+                                style={{ height: '500px', width: '1200px' }}
                                 renderHTML={(text) => mdParser.render(text)}
                                 onChange={handleEditorChange}
                             />

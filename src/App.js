@@ -10,6 +10,7 @@ import ProfilePage from './Page/ProfilePage/ProfilePage';
 import NoSlider from './components/NoSlider';
 import Cart from './Page/Cart/Cart';
 import PayPage from './Page/PayPage/PayPage';
+import BillPage from './Page/Bill/BillPage';
 function App() {
     const [, setSate, , setUser, , , ,] = useContext(Context);
     const isUser = JSON.parse(localStorage.getItem('userLogin'));
@@ -84,6 +85,18 @@ function App() {
                         isUser ? (
                             <NoSlider>
                                 <PayPage />
+                            </NoSlider>
+                        ) : (
+                            <Navigate to="/" />
+                        )
+                    }
+                />
+                <Route
+                    path="/pay/bill/:id"
+                    element={
+                        isUser ? (
+                            <NoSlider>
+                                <BillPage />
                             </NoSlider>
                         ) : (
                             <Navigate to="/" />

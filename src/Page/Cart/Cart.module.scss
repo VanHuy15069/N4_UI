@@ -1,5 +1,6 @@
 .wrapper {
     padding: 30px 0;
+    min-height: calc(100vh - 590px);
 }
 .cart-list {
     display: flex;
@@ -133,9 +134,14 @@
     font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
+    &:hover {
+        background-color: #d26e4b;
+        border: 2px solid #d26e4b;
+    }
 }
 .empty-cart {
     text-align: center;
+    padding: 30px 0;
 }
 .btn-back {
     margin-top: 20px;
