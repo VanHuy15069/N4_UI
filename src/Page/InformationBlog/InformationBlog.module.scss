@@ -4,20 +4,22 @@
 
     .blog-left {
         width: 27%;
+        min-width: 27%;
     }
 
     .blog-right {
         flex: 1;
         border-left: 1px solid #ececec;
         margin-top: 20px;
-        width: 100%;
+        width: min-content;
+        overflow: hidden;
 
         .content {
             display: flex;
             flex-direction: column;
             margin: 0 15px;
             width: 100%;
-            border: 1px solid #dddddd;
+            // border: 1px solid #dddddd;
 
             .header {
                 text-transform: uppercase;

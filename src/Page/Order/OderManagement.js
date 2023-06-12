@@ -14,7 +14,11 @@ function OrderManagement() {
     const [data, setData] = useState([]);
     const [currunOrder, setCurrunOrder] = useState({});
     const [products, setProducts] = useState([]);
-    const [show, setShow] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
+    const [accept, setAccpect] = useState(false);
+    const [cancleOrder, setCancleOrder] = useState(false);
+    const [orderAccpect, setOrderAcpect] = useState({});
+    const [render, setRender] = useState(false);
 
     useEffect(() => {
         axios
@@ -23,7 +27,7 @@ function OrderManagement() {
                 setData(res.data.orders);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [render]);
     useEffect(() => {
         if (currunOrder.userId) {
             axios
@@ -40,7 +44,37 @@ function OrderManagement() {
     }, 0);
     const handleDetail = (order) => {
         setCurrunOrder(order);
-        setShow(true);
+        setShowDetails(true);
+    };
+    const handleShowAccpect = (order) => {
+        if (order.status === 'Chờ duyệt') {
+            setAccpect(true);
+            setOrderAcpect(order);
+        }
+    };
+    const handleShowCancle = (order) => {
+        if (order.status === 'Chờ duyệt') {
+            setCancleOrder(true);
+            setOrderAcpect(order);
+        }
+    };
+    const handleAccpect = () => {
+        axios
+            .put(`http://localhost:5000/api/v1/orderDetails/${orderAccpect.id}`, { status: 'Đã duyệt' })
+            .then(() => {
+                setRender(!render);
+                setAccpect(false);
+            })
+            .catch((err) => console.log(err));
+    };
+    const handleCancle = () => {
+        axios
+            .put(`http://localhost:5000/api/v1/orderDetails/${orderAccpect.id}`, { status: 'Bị hủy' })
+            .then(() => {
+                setRender(!render);
+                setCancleOrder(false);
+            })
+            .catch((err) => console.log(err));
     };
     return (
         <div className={cx('wrapper')}>
@@ -78,7 +112,10 @@ function OrderManagement() {
                                                 </button>
                                             </td>
                                             <td className={cx('action')}>
-                                                <button className={cx('btn', 'btn-accpect')}>
+                                                <button
+                                                    className={cx('btn', 'btn-accpect')}
+                                                    onClick={() => handleShowAccpect(order)}
+                                                >
                                                     <span className={cx('icon-btn')}>
                                                         <FontAwesomeIcon icon={faPenToSquare} />
                                                     </span>
@@ -86,7 +123,10 @@ function OrderManagement() {
                                                 </button>
                                             </td>
                                             <td className={cx('action')}>
-                                                <button className={cx('btn', 'btn-delete')}>
+                                                <button
+                                                    className={cx('btn', 'btn-delete')}
+                                                    onClick={() => handleShowCancle(order)}
+                                                >
                                                     <span className={cx('icon-btn')}>
                                                         <FontAwesomeIcon icon={faPenToSquare} />
                                                     </span>
@@ -101,9 +141,19 @@ function OrderManagement() {
                     </div>
                 </div>
             </Wrapper>
-            {show && (
-                <BoxMSG maxWidth onClickHide={() => setShow(false)}>
+            {showDetails && (
+                <BoxMSG maxWidth onClickHide={() => setShowDetails(false)}>
                     <TableDetails products={products} priceSum={priceSum} note={currunOrder.note} />
+                </BoxMSG>
+            )}
+            {accept && (
+                <BoxMSG control maxWidth onClickHide={() => setAccpect(false)} onClickOK={handleAccpect}>
+                    <p className={cx('text-msg')}>Duyệt đơn hàng này</p>
+                </BoxMSG>
+            )}
+            {cancleOrder && (
+                <BoxMSG control maxWidth onClickHide={() => setCancleOrder(false)} onClickOK={handleCancle}>
+                    <p className={cx('text-msg')}> Hủy đơn hàng này</p>
                 </BoxMSG>
             )}
         </div>
