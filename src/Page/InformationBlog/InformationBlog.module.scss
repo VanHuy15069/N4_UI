@@ -1,5 +1,4 @@
 .wrapper {
-    display: flex;
     padding: 30px 0;
 
     .blog-left {
@@ -8,10 +7,8 @@
     }
 
     .blog-right {
-        flex: 1;
-        border-left: 1px solid #ececec;
+        padding: 0 90px;
         margin-top: 20px;
-        width: min-content;
         overflow: hidden;
 
         .content {
@@ -19,8 +16,13 @@
             flex-direction: column;
             margin: 0 15px;
             width: 100%;
-            // border: 1px solid #dddddd;
-
+            & img {
+                display: block;
+                width: 100%;
+            }
+            & p {
+                text-align: justify;
+            }
             .header {
                 text-transform: uppercase;
                 color: #4f4f4f;
@@ -43,8 +45,10 @@
             }
 
             .thumbnail {
+                padding: 15px;
                 margin-top: 20px;
-                img {
+                & img {
+                    display: block;
                     width: 100%;
                     height: auto;
                 }

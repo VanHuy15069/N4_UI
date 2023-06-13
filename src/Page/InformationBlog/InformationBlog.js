@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './InformationBlog.module.scss';
-import BlogSideBar from '~/components/DefaultLayout/BLogSideBar/BlogSideBar';
+// import BlogSideBar from '~/components/DefaultLayout/BLogSideBar/BlogSideBar';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faTelegram } from '@fortawesome/free-brands-svg-icons';
@@ -23,9 +23,9 @@ export default function InformationBlog() {
     }, [params]);
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('blog-left')}>
+            {/* <div className={cx('blog-left')}>
                 <BlogSideBar />
-            </div>
+            </div> */}
 
             <div className={cx('blog-right')}>
                 <div className={cx('content')}>
